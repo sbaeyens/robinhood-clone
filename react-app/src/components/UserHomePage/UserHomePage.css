@@ -1,0 +1,24 @@
+.app-body {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 600px;
+}
+
+.app-container {
+  display: flex;
+  width: 1024px;
+  height: 100%;
+  padding-left: 48px;
+  padding-right: 48px;
+}
+
+.home-left-body {
+  border: 3px dotted orange;
+  flex: 0.7;
+}
+
+.home-right-panel {
+  border: 2px dotted blue;
+  flex: 0.3;
+}

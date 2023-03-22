@@ -1,0 +1,12 @@
+.chart-container {
+  /* border: 3px dotted orange;
+  flex: 0.7; */
+}
+
+.value-summary h1 {
+  margin: 0;
+}
+
+.value-summary p {
+  margin-top: 0;
+}

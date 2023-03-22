@@ -1,0 +1,174 @@
+.profile-dropdown {
+  position: absolute;
+}
+
+.hidden {
+  display: none;
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 40px;
+  align-items: center;
+  height: 64px;
+  color: black;
+}
+
+.nav-search {
+  display: flex;
+  justify-content: center;
+  /* width: 75%; */
+  /* Trying to get rid of white space between -anton */
+  width: 30%;
+}
+
+.nav-search-bar {
+  border-radius: 0;
+  padding: 15px;
+  height: 30px;
+  /* width: 95%; */
+  /* Trying to get rid of white space between -anton */
+  width: 100%;
+  border: 1px solid lightgray;
+}
+
+.nav-search > input:focus {
+  outline: none;
+}
+
+.nav-links-container {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  padding: 0px 10px;
+}
+
+.profile-dropdown {
+  position: absolute;
+  /* added z-index and background due to overlapping hover elements on product-cards */
+  margin: 0px 0px 0px 0px;
+  z-index: 10;
+  background: white;
+  /* added border radius so bottom left isnt sharp */
+  border-radius: 5px;
+}
+
+.nav-profile-button {
+  border: 1px solid white;
+  border-radius: 40%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 5px;
+  cursor: pointer;
+}
+
+.fa-user {
+  border: 1px solid lightgray;
+  background-color: lightgray;
+  border-radius: 100%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* profile dropdown CSS -------------------------------------------- */
+
+.profile-dropdown-container {
+  border: 1px solid lightgray;
+  border-radius: 1px;
+  height: 110px;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 1px;
+}
+
+.profile-dropdown-div {
+  height: 110px;
+}
+
+.profile-dropdown-user {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  width: 100px;
+  padding: 2px 0px;
+  border-radius: 5px;
+}
+
+.profile-dropdown-user:hover {
+  background-color: lightgray;
+}
+
+.profile-dropdown-name {
+  margin: 3px 0px 0px 7px;
+}
+
+.profile-dropdown-purchases {
+  padding: 4px 0px 0px 0px;
+  width: 100px;
+  height: 33px;
+  border-radius: 5px;
+}
+
+.profile-dropdown-purchases:hover {
+  background-color: lightgray;
+}
+
+.fa-clipboard-list {
+  height: 33px;
+  width: 20px;
+  padding: 4px 4px;
+}
+
+.profile-dropdown-logout {
+  width: 100px;
+  height: 33px;
+  padding-top: 5px;
+  border-radius: 5px;
+}
+
+.profile-dropdown-logout:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.fa-sign-out-alt {
+  height: 20px;
+  width: 20px;
+  padding: 0px 4px;
+}
+
+/* profile logout signup CSS -------------------------------------------- */
+
+.profile-logsign-div {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  /* by default buttons were xparent, so added background white */
+  background: white;
+}
+
+.login-sign-btn {
+  border: none;
+  background-color: transparent;
+  font-size: 13px;
+  font-weight: bold;
+  border-radius: 3px;
+  padding: 8px 8px;
+  cursor: pointer;
+}
+
+.login-sign-btn:hover {
+  background-color: lightgray;
+}

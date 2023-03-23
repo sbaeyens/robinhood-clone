@@ -13,12 +13,16 @@
   padding-right: 48px;
 }
 
-.home-left-body {
+/* .home-left-body {
   border: 3px dotted orange;
   flex: 0.7;
-}
+} */
 
-.home-right-panel {
-  border: 2px dotted blue;
-  flex: 0.3;
-}
+/* stats */
+/* .home-right-panel {
+  flex-direction: column;
+  flex: 1;
+  background-color: aquamarine;
+  border-radius: 5px;
+  border: 1px solid #42494d;
+} */

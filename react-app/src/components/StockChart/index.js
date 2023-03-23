@@ -42,11 +42,11 @@ function StockChart() {
       },
       {
         x: 5,
-        y: 8
+        y: 50
       },
       {
         x: 10,
-        y: 12
+        y: 2
       },
       {
         x: 15,

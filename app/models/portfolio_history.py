@@ -15,7 +15,7 @@ class Portfolio_History(db.Model):
 
     ## Relationships ##
     # Many-to-One Relationship with Portfolio
-    portfolio = db.relationship("Portfolio", back_populates="portfolio_history")
+    portfolio = db.relationship("Portfolio", back_populates="portfolio_histories")
 
 
     def to_dict(self):

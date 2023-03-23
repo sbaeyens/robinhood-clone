@@ -14,10 +14,10 @@ class Watchlist(db.Model):
 
     ## Relationships ##
     # Many-to-One with users
-    user = db.relationship("User", back_populates="watchlist")
+    user = db.relationship("User", back_populates="watchlists")
     # Many-to-Many with stocks via watchlist_stocks
-    stock = db.relationship('Stock', secondary='watchlist_stock', back_populates='watchlist')
-    watchlist_stock = db.relationship('Watchlist_Stock', back_populates='watchlist')
+    stocks = db.relationship('Stock', secondary='watchlist_stocks', back_populates='watchlists')
+    watchlist_stocks = db.relationship('Watchlist_Stock', back_populates='watchlist')
 
 
     def to_dict(self):

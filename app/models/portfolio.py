@@ -14,13 +14,13 @@ class Portfolio(db.Model):
     # One-to-One with User
     user = db.relationship('User', uselist=False, back_populates='portfolio')
     # One-to-Many with Transfers
-    transfer = db.relationship("Transfer", back_populates="portfolio")
+    transfers = db.relationship("Transfer", back_populates="portfolio")
     # One-to-Many with Portfolio_History
-    portfolio_history = db.relationship("Portfolio_History", back_populates="portfolio")
+    portfolio_histories = db.relationship("Portfolio_History", back_populates="portfolio")
     # One-to-Many with Transaction
-    transaction = db.relationship('Transaction', back_populates='portfolio')
+    transactions = db.relationship('Transaction', back_populates='portfolio')
     # One-to-Many with Investment
-    investment = db.relationship('Investment', back_populates='portfolio')
+    investments = db.relationship('Investment', back_populates='portfolio')
 
 
     def to_dict(self):

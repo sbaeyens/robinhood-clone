@@ -13,9 +13,9 @@ class Watchlist_Stock(db.Model):
 
     ## Relationships ##
     # Many-to-One with stocks
-    stock = db.relationship('Stock', back_populates='watchlist_stock')
+    stock = db.relationship('Stock', back_populates='watchlist_stocks')
     # Many-to-One with watchlists
-    watchlist = db.relationship('Watchlist', back_populates='watchlist_stock')
+    watchlist = db.relationship('Watchlist', back_populates='watchlist_stocks')
 
     def to_dict(self):
         return {

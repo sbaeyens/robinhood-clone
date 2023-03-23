@@ -1,4 +1,43 @@
-.watchlist-widget-container {
-  /* border: 2px dotted blue;
-  flex: 0.3; */
+.watchlists {
+  flex: 0.3;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 30px 30px 30px;
+}
+
+.watchlist-container {
+  flex-direction: column;
+  flex: 1;
+  background-color: lightgoldenrodyellow;
+  border-radius: 5px;
+  border: 1px solid #42494d;
+}
+
+.watchlist-header {
+  display: flex;
+  font-size: 16px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #42494d;
+  padding: 20px 20px 10px 20px;
+  font-weight: 500;
+}
+
+.watchlist__content {
+  font-size: 13px;
+}
+
+.watchlist-row {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 24px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.watchlist-lists {
+  height: 52px;
+  border-top: 1px solid #42494d;
+  padding: 4px 20px 0px 20px;
 }

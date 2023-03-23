@@ -59,7 +59,7 @@ def seed_investments():
 def undo_investments():
     if environment == "production":
         db.session.execute(
-            f"TRUNCATE table {SCHEMA}.purchases RESTART IDENTITY CASCADE;")
+            f"TRUNCATE table {SCHEMA}.investments RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM investments")
 

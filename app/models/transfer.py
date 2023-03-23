@@ -15,7 +15,7 @@ class Transfer(db.Model):
 
     ## Relationships ##
     # Many-to-One Relationship with Portfolio
-    portfolio = db.relationship("Portfolio", back_populates="transfer")
+    portfolio = db.relationship("Portfolio", back_populates="transfers")
 
 
     def to_dict(self):

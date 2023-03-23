@@ -16,6 +16,7 @@ class User(db.Model, UserMixin):
 
     ##  Relationships ##
     portfolio = db.relationship('Portfolio', uselist=False, back_populates='user')
+    watchlists = db.relationship("Watchlist", back_populates='user')
 
     @property
     def password(self):

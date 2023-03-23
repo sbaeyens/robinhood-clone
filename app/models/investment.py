@@ -14,9 +14,9 @@ class Investment(db.Model):
 
     ## Relationships ##
     # Many-to-One with Portfolio
-    portfolio = db.relationship('Portfolio', back_populates='investment')
+    portfolio = db.relationship('Portfolio', back_populates='investments')
     # Many-to-one with Stocks
-    stock = db.relationship('Stock', back_populates='investment')
+    stock = db.relationship('Stock', back_populates='investments')
 
 
     def to_dict(self):

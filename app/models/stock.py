@@ -12,12 +12,12 @@ class Stock(db.Model):
 
     ## Relationships ##
     # Many-to-Many with Watchlists
-    watchlist = db.relationship('Watchlist', secondary='watchlist_stocks', back_populates='stock')
-    watchlist_stock = db.relationship('Watchlist_Stock', back_populates='stock')
+    watchlists = db.relationship('Watchlist', secondary='watchlist_stocks', back_populates='stocks')
+    watchlist_stocks = db.relationship('Watchlist_Stock', back_populates='stock')
     # One-to-Many with Transaction
-    transaction = db.relationship('Transaction', back_populates='stock')
+    transactions = db.relationship('Transaction', back_populates='stock')
     # One-to-Many with Investment
-    investment = db.relationship('Investment', back_populates='stock')
+    investments = db.relationship('Investment', back_populates='stock')
 
 
 

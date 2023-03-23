@@ -21,7 +21,7 @@ function WatchlistWidget() {
           </div>
         </div>
         <div className="watchlist-header">
-          <p>Stocks</p>
+          <p>Lists</p>
         </div>
         <div className="watchlist-content">
           <div className="watchlist-row">

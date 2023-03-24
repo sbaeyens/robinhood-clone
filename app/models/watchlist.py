@@ -2,6 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.orm import validates
 
 
+
 class Watchlist(db.Model):
     __tablename__ = 'watchlists'
 
@@ -25,4 +26,5 @@ class Watchlist(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'name': self.name,
+            'stocks': [stock.to_dict() for stock in self.stocks]
         }

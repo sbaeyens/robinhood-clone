@@ -20,7 +20,7 @@
   justify-content: space-between;
   border-bottom: 1px solid lightgray;
   padding: 20px 20px 10px 20px;
-  font-weight: 500;
+  font-weight: 800;
 }
 
 .watchlist__content {
@@ -34,10 +34,40 @@
   padding: 0 24px;
   align-items: center;
   cursor: pointer;
+  border: 2px dashed pink;
+}
+
+.watchlist-name {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+  padding: 0 24px;
+  align-items: center;
+  cursor: pointer;
+  border: 2px dashed pink;
+  font-weight: 600;
 }
 
 .watchlist-lists {
   height: 52px;
   border-top: 1px solid #42494d;
   padding: 4px 20px 0px 20px;
+}
+
+.list-name-box {
+  border: 1px solid green;
+}
+
+.watchlist-header-listname {
+  display: flex;
+  font-size: 16px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+  padding: 20px 20px 10px 20px;
+  font-weight: 500;
+}
+
+.add-list-button {
+  background-color: blueviolet;
 }

@@ -10,4 +10,4 @@ watchlist_stocks = db.Table(
 )
 
 if environment == "production":
-    watchlist_stocks = {'schema': SCHEMA}
+    watchlist_stocks.schema = SCHEMA

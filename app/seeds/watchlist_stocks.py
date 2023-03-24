@@ -1,6 +1,7 @@
 from app.models import db, environment, SCHEMA
 from app.models.watchlist_stock import watchlist_stocks
 
+
 from sqlalchemy.sql import text
 
 def seed_watchlist_stocks():

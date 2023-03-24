@@ -6,18 +6,18 @@ from sqlalchemy.sql import text
 def seed_watchlist_stocks():
 
     watchlist_stock_data = [
-        {'watchlist_id': 1, 'stock_id': 'GOOG'},
-        {'watchlist_id': 1, 'stock_id': 'AAPL'},
-        {'watchlist_id': 2, 'stock_id': 'AMZN'},
-        {'watchlist_id': 2, 'stock_id': 'GOOG'},
-        {'watchlist_id': 3, 'stock_id': 'AMZN'},
-        {'watchlist_id': 4, 'stock_id': 'GOOG'},
+        {'watchlist_id': 1, 'ticker': 'GOOG'},
+        {'watchlist_id': 1, 'ticker': 'AAPL'},
+        {'watchlist_id': 2, 'ticker': 'AMZN'},
+        {'watchlist_id': 2, 'ticker': 'GOOG'},
+        {'watchlist_id': 3, 'ticker': 'AMZN'},
+        {'watchlist_id': 4, 'ticker': 'GOOG'},
     ]
 
     for data in watchlist_stock_data:
         stock = watchlist_stocks.insert().values(
             watchlist_id = data['watchlist_id'],
-            ticker_id = data['ticker_id']
+            ticker = data['ticker']
         )
         db.session.execute(stock)
 

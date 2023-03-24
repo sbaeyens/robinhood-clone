@@ -1,35 +1,48 @@
 import React from "react";
 import { useModal } from "../../context/Modal";
 import { useDispatch } from "react-redux";
-// import { deleteReview } from "../../store/reviews";
-// import { fetchSingleProduct } from "../../store/products";
+import { useState, useEffect } from "react";
 import "./CreateListModal.css";
+import { createList } from "../../store/watchlists";
 
 const CreateListModal = () => {
 
   const dispatch = useDispatch();
+    const [name, setName] = useState("");
+
   const { closeModal } = useModal();
 
-  const confirm = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // dispatch(deleteReview(currentReview?.id));
-    // dispatch(fetchSingleProduct(productId));
+
+    const newList = {
+      name: name,
+    };
+
+    await dispatch(createList(newList));
     closeModal();
   };
 
   return (
-    <div className="delete-product_and_review-container">
-      <h2>Confirm Delete</h2>
-      <p className="delete-question">
-        Are you sure you want to delete this review?
-      </p>
-      <button onClick={confirm} className="delete-product_and_review-button">
-        Yes (Delete Review)
+    <form className="list-form">
+      <h2>Create a List</h2>
+      <div className="list-text-div">
+        <input
+          className="list-input-text"
+          placeholder="List Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        ></input>
+      </div>
+
+      <button
+        className="submit-form-btn"
+        onClick={handleSubmit}
+        // disabled={errors.length ? true : false}
+      >
+        Create List
       </button>
-      <button onClick={closeModal} className="keep-product_and_review-button">
-        No (Keep Review)
-      </button>
-    </div>
+    </form>
   );
 };
 

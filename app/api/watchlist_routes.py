@@ -3,6 +3,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from app.models.db import db
 from app.models import Watchlist, User
 from app.models.watchlist_stock import watchlist_stocks
+from app.forms.watchlist_form import WatchlistForm
 
 watchlist_routes = Blueprint('watchlists', __name__)
 
@@ -24,3 +25,19 @@ def get_user_watchlists(userId):
         return jsonify(watchlist_data)
     else:
         return jsonify([])
+
+@watchlist_routes.route("/", methods=["POST"])
+def create_new_watchlist():
+    res = request.get_json()
+    user = current_user.to_dict()
+
+    form = WatchlistForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        watchlist = Watchlist(
+          user_id=user["id"],
+          name=res["name"]
+        )
+        db.session.add(watchlist)
+        db.session.commit()
+        return watchlist.to_dict()

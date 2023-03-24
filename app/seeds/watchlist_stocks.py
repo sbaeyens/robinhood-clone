@@ -1,4 +1,6 @@
-from app.models import db, environment, SCHEMA, Watchlist_Stock
+from app.models import db, environment, SCHEMA
+from app.models.watchlist_stock import watchlist_stocks
+
 from sqlalchemy.sql import text
 
 def seed_watchlist_stocks():
@@ -12,12 +14,14 @@ def seed_watchlist_stocks():
         {'watchlist_id': 4, 'stock_id': 'GOOG'},
     ]
 
-    for stock in watchlist_stock_data:
-        db.session.add(Watchlist_Stock(
-            watchlist_id=stock['watchlist_id'],
-            stock_id=stock['stock_id']
-        ))
+    for data in watchlist_stock_data:
+        stock = watchlist_stocks.insert().values(
+            watchlist_id = data['watchlist_id'],
+            ticker_id = data['ticker_id']
+        )
+        db.session.execute(stock)
 
+    # Commit the changes to the database
     db.session.commit()
 
 

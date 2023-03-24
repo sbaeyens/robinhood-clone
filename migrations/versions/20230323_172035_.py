@@ -127,7 +127,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('watchlist_id', 'ticker')
     )
     if environment == "production":
-        op.execute(f"ALTER TABLE watchlists_stocks SET SCHEMA {SCHEMA};")
+        op.execute(f"ALTER TABLE watchlist_stocks SET SCHEMA {SCHEMA};")
     # ### end Alembic commands ###
 
 

@@ -17,7 +17,7 @@ class Watchlist(db.Model):
     user = db.relationship("User", back_populates="watchlists")
     # Many-to-Many with stocks via watchlist_stocks
     stocks = db.relationship('Stock', secondary='watchlist_stocks', back_populates='watchlists')
-    watchlist_stocks = db.relationship('Watchlist_Stock', back_populates='watchlist')
+    # watchlist_stocks = db.relationship('Watchlist_Stock', back_populates='watchlist')
 
 
     def to_dict(self):

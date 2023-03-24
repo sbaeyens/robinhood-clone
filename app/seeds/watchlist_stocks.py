@@ -1,5 +1,7 @@
 from app.models import db, environment, SCHEMA
 from app.models.watchlist_stock import watchlist_stocks
+from sqlalchemy import insert
+
 
 
 from sqlalchemy.sql import text
@@ -16,7 +18,7 @@ def seed_watchlist_stocks():
     ]
 
     for data in watchlist_stock_data:
-        stock = watchlist_stocks.insert().values(
+        stock = insert(watchlist_stocks).values(
             watchlist_id = data['watchlist_id'],
             ticker = data['ticker']
         )

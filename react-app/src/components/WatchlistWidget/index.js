@@ -1,10 +1,17 @@
 import React from "react";
 import "./WatchlistWidget.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState} from "react";
 import { thunkGetAllWatchlistsUserId } from "../../store/watchlists";
 import OpenModalButton from "../OpenModalButton";
 import CreateListModal from "../CreateListModal";
+
+
+//
+import OptionsModalButton from "./WatchlistModals/OptionsModalButton";
+// import WatchlistModalButton from "./WatchlistModals/WatchlistModal";
+import RenameWatchlistModal from "./WatchlistModals/RenameWatchlistModal";
+import DeleteWatchlistModal from "./WatchlistModals/DeleteWatchlistModal";
 
 
 function WatchlistWidget() {
@@ -13,6 +20,10 @@ function WatchlistWidget() {
   const watchlists = useSelector((state) => state.watchlists);
   // console.log("watchlists", watchlists)
 
+  // USE STATE
+    const [openDropdown, setOpenDropdown] = useState(null);
+
+  // USE EFFECTS
   useEffect(() => {
     dispatch(thunkGetAllWatchlistsUserId(user.id));
   }, [dispatch]);
@@ -26,6 +37,25 @@ function WatchlistWidget() {
 
   console.log("userid in watchlist widget", user.id);
   console.log("");
+
+    const handleDropdown = (e) => {
+      // Edit menu dropdown toggle handler
+      e.stopPropagation();
+      // close any other dropdowns
+      if (openDropdown && openDropdown !== e.target) {
+        openDropdown.nextElementSibling?.classList.remove("showModal");
+      }
+
+      // toggle current dropdown
+      e.target.nextElementSibling?.classList.toggle("showModal");
+
+      // update openDropdown state
+      setOpenDropdown(openDropdown === e.target ? null : e.target);
+    };
+
+    const stopPropagation = (e) => {
+      e.stopPropagation();
+    };
 
   return (
     <div className="watchlists">
@@ -43,9 +73,7 @@ function WatchlistWidget() {
             <OpenModalButton
               buttonText={"+"}
               modalClass={"add-list-button"}
-              modalComponent={
-                <CreateListModal />
-              }
+              modalComponent={<CreateListModal />}
             ></OpenModalButton>
           </div>
         </div>
@@ -55,7 +83,24 @@ function WatchlistWidget() {
             <div key={list.name}>
               <div className="watchlist-row">
                 <div className="watchlist-name">{list.name}</div>
-                <div>edit</div>
+                <i className="as fa-user" onClick={(e) => handleDropdown(e)} />
+                <div
+                  className="watchlist-list-edit-dropdown"
+                  onClick={(e) => stopPropagation(e)}
+                >
+                  <OptionsModalButton
+                    modalComponent={
+                      <RenameWatchlistModal list={list} />
+                    }
+                    buttonText={"Edit"}
+                  />
+                  <OptionsModalButton
+                    modalComponent={
+                      <DeleteWatchlistModal list={list} />
+                    }
+                    buttonText={"Delete"}
+                  />
+                </div>
                 <div>V</div>
               </div>
               {list.stocks.map((stock) => {

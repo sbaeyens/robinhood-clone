@@ -41,3 +41,14 @@ def create_new_watchlist():
         db.session.add(watchlist)
         db.session.commit()
         return watchlist.to_dict()
+
+@watchlist_routes.route('/<int:id>', methods=['DELETE'])
+def delete_watchlist_by_id(id):
+    watchlist = Watchlist.query.get(id)
+
+    if not watchlist:
+        return "Specified watchlist does not exist"
+
+    db.session.delete(watchlist)
+    db.session.commit()
+    return "Successfully Deleted"

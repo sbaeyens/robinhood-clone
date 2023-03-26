@@ -52,3 +52,13 @@ def delete_watchlist_by_id(id):
     db.session.delete(watchlist)
     db.session.commit()
     return "Successfully Deleted"
+
+@watchlist_routes.route('/<int:id>', methods=['PUT'])
+# @login_required
+def update_watchlist(id):
+    res = request.get_json()
+    watchlist = Watchlist.query.get(id)
+
+    watchlist.name = res['name']
+    db.session.commit()
+    return watchlist.to_dict()

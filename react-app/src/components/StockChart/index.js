@@ -93,7 +93,7 @@ function StockChart() {
       <div className="line-chart">
         <Line
           data={{
-            labels: [0,5,10,15,20], //map x to this
+            labels: [0, 5, 10, 15, 20], //map x to this
             datasets: [
               {
                 type: "line",
@@ -110,9 +110,24 @@ function StockChart() {
                 data: data,
               },
             ],
-                  }}
-                  options={options}
+          }}
+          options={options}
         />
+      </div>
+      <div className="timeline-container">
+        <div className="timeline-buttons-container">
+          <div className="timeline-button">1D</div>
+          <div className="timeline-button active">1W</div>
+          <div className="timeline-button">1M</div>
+          <div className="timeline-button">3M</div>
+          <div className="timeline-button">1Y</div>
+          <div className="timeline-button">ALL</div>
+        </div>
+      </div>
+      <div className="buying-power-container">
+        <h2>Buying Power</h2>
+        <h2>$22,222.22</h2>
+
       </div>
     </div>
   );

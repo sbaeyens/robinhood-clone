@@ -10,3 +10,35 @@
 .value-summary p {
   margin-top: 0;
 }
+
+.timeline-container {
+  display: flex;
+  border-bottom: 1px solid lightgrey;
+}
+
+.timeline-buttons-container {
+  display: flex;
+  align-items: center;
+}
+
+.timeline-button {
+  font-weight: bold;
+  padding: 10px 10px 20px 10px;
+  cursor: pointer;
+}
+
+.timeline-button:hover {
+  color: #5ac53b;
+}
+
+.timeline-button.active {
+  color: #5ac53b;
+  border-bottom: 2px solid #5ac53b;
+}
+
+.buying-power-container {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgrey;
+  padding: 20px 0px 20px 0px;
+}

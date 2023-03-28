@@ -8,7 +8,6 @@
 .watchlist-container {
   flex-direction: column;
   flex: 1;
-  background-color: lightgoldenrodyellow;
   border-radius: 5px;
   border: 1px solid lightgray;
 }
@@ -34,17 +33,16 @@
   padding: 0 24px;
   align-items: center;
   cursor: pointer;
-  border: 2px dashed pink;
+  border: 1px solid lightgrey;
 }
 
 .watchlist-name {
   display: flex;
   justify-content: space-between;
   height: 60px;
-  padding: 0 24px;
+  padding: 0 15px;
   align-items: center;
   cursor: pointer;
-  border: 2px dashed pink;
   font-weight: 600;
 }
 
@@ -69,5 +67,4 @@
 }
 
 .add-list-button {
-  background-color: blueviolet;
 }

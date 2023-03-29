@@ -1,0 +1,80 @@
+.buy-sell-widget {
+  flex: 0.3;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 30px 30px 30px;
+}
+
+.buy-sell-widget-container {
+  flex-direction: column;
+  flex: 1;
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding: 15px;
+}
+
+.order-type {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px 10px 0px;
+}
+
+.share-quantity {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px 10px 0px;
+}
+
+.estimated-cost {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px 10px 0px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0px 10px 0px;
+}
+
+.purchase-button {
+  border-radius: 20px;
+  padding: 10px;
+  background-color: aquamarine;
+}
+
+.buy-sell-widget-container {
+  /* background-color: lightgrey; */
+  border: 1px solid lightgray;
+  box-shadow: 2px 2px 10px lightgray;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 10px 0px; */
+}
+
+.buy-sell-btn-div {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+}
+
+.transaction-btn {
+  /* border: var(--global-border); */
+  font-size: 20px;
+  font-weight: bold;
+  height: 40px;
+  padding: 15px 0px 0px 0px;
+  margin: 0px 0px 0px 25px;
+  cursor: pointer;
+}
+
+.transaction-btn:hover {
+  color: green;
+}
+
+.selected {
+  border-bottom: 3px solid green;
+  color: green;
+}

@@ -4,9 +4,9 @@ from wtforms.validators import DataRequired
 
 
 class TransactionBuyForm(FlaskForm):
-    shares = IntegerField('Shares', validators=[DataRequired()])
-    total_cost = DecimalField('Total Credit', places=2, validators=[DataRequired()])
+    quantity = IntegerField('Quantity', validators=[DataRequired()])
+    total_expense = DecimalField('Total Expense', places=2, validators=[DataRequired()])
 
 class TransactionSellForm(FlaskForm):
-    shares = IntegerField('Shares', validators=[DataRequired()])
-    total_cost = DecimalField('Total Credit', places=2, validators=[DataRequired()])
+    quantity = IntegerField('Quantity', validators=[DataRequired()])
+    total_expense = DecimalField('Total Expense', places=2, validators=[DataRequired()])

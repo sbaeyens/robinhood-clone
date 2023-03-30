@@ -16,7 +16,7 @@ import DeleteWatchlistModal from "./WatchlistModals/DeleteWatchlistModal";
 
 function WatchlistWidget() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.session.user);
+  const user = useSelector((state) => state.session?.user);
   const watchlists = useSelector((state) => state.watchlists);
 
   // USE STATE
@@ -24,8 +24,10 @@ function WatchlistWidget() {
 
   // USE EFFECTS
   useEffect(() => {
-    dispatch(thunkGetAllWatchlistsUserId(user.id));
-  }, [dispatch]);
+    if (user) {
+      dispatch(thunkGetAllWatchlistsUserId(user.id));
+    }
+  }, [dispatch, user]);
 
   let tempStockList = ["AAPL", "GOOG", "AMZN"];
 

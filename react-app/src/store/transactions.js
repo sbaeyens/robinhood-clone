@@ -1,5 +1,6 @@
 //ACTIONS
 export const GET_ALL_TRANSACTIONS = "transactions/GET_ALL_TRANSACTIONS";
+export const CREATE_TRANSACTIONS = "Investments/CREATE_TRANSACTIONS";
 
 
 //ACTION CREATORS
@@ -9,6 +10,8 @@ export const getAllTransactions = (payload) => {
     payload,
   };
 };
+
+
 
 
 //THUNKS
@@ -24,8 +27,20 @@ export const getTransactionsByTicker = (ticker) => async (dispatch) => {
     }
 };
 
-// Buy new
+// Buy new stock
+export const addTransaction =
+  (ticker, newTransaction) => async (dispatch) => {
+    const response = await fetch(`/api/transactions/${ticker}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newTransaction),
+    });
 
+    if (response) {
+      const data = await response.json();
+      return data;
+    }
+  };
 
 const initialState = { transactions: null };
 

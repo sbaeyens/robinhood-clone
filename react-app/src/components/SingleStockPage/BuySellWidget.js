@@ -2,24 +2,34 @@ import React from "react";
 import "./BuySellWidget.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import { addTransaction } from "../../store/transactions";
 
 
 
-function BuySellWidget({stockData}) {
+function BuySellWidget({ticker, stockData}) {
   const dispatch = useDispatch();
 
   const [quantity, setQuantity] = useState(0);
-    const [type, setType] = useState("buy");
+  const [type, setType] = useState("Buy");
+  const [price, setPrice] = useState(0)
 
   const handleSubmit = async (e) => {
 
-    e.preventDefault();
+    let newTransaction = {
+      quantity: Number(quantity),
+      price_at_time: Number(33),
+      total_expense: Number(66),
+      transaction_type: type
+    }
 
+    dispatch(addTransaction(ticker, newTransaction));
+    e.preventDefault();
 
   };
 
   const onClickTypeHandler = () => {
-    type === "buy" ? setType("sell") : setType("buy");
+    type === "Buy" ? setType("Sell") : setType("Buy");
+
   };
 
 
@@ -29,20 +39,20 @@ function BuySellWidget({stockData}) {
     <div className="buy-sell-widget">
       <div className="buy-sell-widget-container">
               <div>
-                  {type === "buy" && (
+                  {type === "Buy" && (
                       <div
                           onClick={onClickTypeHandler}
                           className={
-                              type === "buy" ? "transaction-btn selected" : "transaction-btn"
+                              type === "Buy" ? "transaction-btn selected" : "transaction-btn"
                           }
                       >
                           Buy
                       </div>)}
-                  {type == "sell" && (
+                  {type == "Sell" && (
                       <div
                           onClick={onClickTypeHandler}
                           className={
-                              type === "sell" ? "transaction-btn selected" : "transaction-btn"
+                              type === "Sell" ? "transaction-btn selected" : "transaction-btn"
                           }
                       >
                           Sell
@@ -65,7 +75,7 @@ function BuySellWidget({stockData}) {
           </div>
           <div className="estimated-cost">
             <p>Estimated Cost</p>
-            <p>${quantity * 45}</p>
+            <p>${quantity * price}</p>
           </div>
           <div className="button-container">
             <button type="submit" className="purchase-button">

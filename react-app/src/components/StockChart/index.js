@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom";
 const API_KEY = process.env.REACT_APP_POLYGON_API_KEY;
 const BASE_URL = "https://api.polygon.io/v2/";
 
-function StockChart() {
+function StockChart({ticker}) {
   const dispatch = useDispatch();
 
   const [buyingPower, setBuyingPower] = useState("");
@@ -25,15 +25,17 @@ function StockChart() {
   const [isActive, setActive] = useState(false);
 
 
-  const user = useSelector((state) => state.session.user);
+  const user = useSelector((state) => state.session?.user);
   const portfolio = useSelector((state) => state.portfolio);
-  let { ticker } = useParams();
 
 
 
   useEffect(() => {
+    if (!ticker) {
+      return
+    }
     async function fetchChartData() {
-      const data = await fetchStockChartData(ticker.toUpperCase(), dateRange);
+      const data = await fetchStockChartData(ticker, dateRange);
       const labels = data.results.map((result) =>
         new Date(result.t).toLocaleDateString()
       );
@@ -62,8 +64,11 @@ function StockChart() {
   }, [dateRange, ticker]);
 
   useEffect(() => {
+    if (!ticker) {
+      return;
+    }
     async function runFetchStockDetails() {
-      const data = await fetchStockDetails(ticker.toUpperCase());
+      const data = await fetchStockDetails(ticker);
       let openPrice = data.ticker.day.o;
       let change = data.ticker.todaysChange;
       let currentPrice = openPrice + change;

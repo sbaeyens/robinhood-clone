@@ -33,11 +33,11 @@ function SingleStockPage() {
     <div className="app-body-single">
       <div className="app-container-single">
         <div className="app-left">
-          <StockChart />
+          <StockChart ticker={ticker} />
           <Transactions ticker={ticker} />
         </div>
         <div className="app-right">
-          <BuySellWidget stockData={stockData} />
+          <BuySellWidget ticker={ticker}  stockData={stockData} />
         </div>
       </div>
       <div></div>

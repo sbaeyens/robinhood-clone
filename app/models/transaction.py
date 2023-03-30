@@ -12,6 +12,7 @@ class Transaction(db.Model):
     stock_id = db.Column(db.String, db.ForeignKey(add_prefix_for_prod('stocks.ticker')), nullable=False)
     quantity = db.Column(db.Integer, nullable=False)
     price_at_time = db.Column(db.Integer, nullable=False)
+    transaction_type = db.Column(db.String, nullable=False)
     total_expense = db.Column(db.Integer, nullable=False)
     date = db.Column(db.DateTime, nullable=False)
 
@@ -29,6 +30,7 @@ class Transaction(db.Model):
             'stock_id': self.stock_id,
             'quantity': self.quantity,
             'price_at_time': self.price_at_time,
+            'transaction_type': self.transaction_type,
             'total_expense': self.price_at_time,
             'date': self.date,
         }

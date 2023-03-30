@@ -29,9 +29,9 @@ const actionEditWatchlist = (watchlist) => ({
 });
 
 // THUNKS
-export const thunkGetAllWatchlistsUserId = (id) => async (dispatch) => {
+export const thunkGetAllWatchlistsUserId = () => async (dispatch) => {
 //   const response = await fetch(`/api/users/${+id}/watchlists`)
-  const response = await fetch(`/api/watchlists/user/${id}`)
+  const response = await fetch(`/api/watchlists/user`)
 
   if (response.ok) {
     const watchlistById = await response.json();
@@ -67,7 +67,6 @@ export const deleteList = (id) => async (dispatch) => {
 };
 
 export const editWatchlist = (watchlist) => async (dispatch) => {
-  console.log("watchlist from thunk", watchlist.id)
   const response = await fetch(`/api/watchlists/${watchlist.id}`, {
     method: "PUT",
     headers: {

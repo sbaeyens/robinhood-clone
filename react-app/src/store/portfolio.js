@@ -18,7 +18,6 @@ export const getUserPortfolio = () => async (dispatch) => {
 
     if (response.ok) {
         const portfolio = await response.json()
-        console.log("portfolio from THUNK", portfolio )
         await dispatch(actionGetUserPortfolio(portfolio))
         return portfolio
     }
@@ -38,7 +37,6 @@ export default function portfolioReducer(state = initialState, action) {
     const newState = { ...state }
     switch (action.type) {
         case GET_USER_PORTFOLIO: {
-        console.log("action from REDUCER", action)
         newState.id = action.portfolio.id;
         newState.balance = action.portfolio.balance;
         return newState;

@@ -7,41 +7,35 @@ import axios from "axios"
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserPortfolio } from "../../store/portfolio"
-import { fetchStockChartData } from "../../Utils";
+import { fetchStockChartData, fetchStockDetails } from "../../Utils";
 import { useParams } from "react-router-dom";
 
 const API_KEY = process.env.REACT_APP_POLYGON_API_KEY;
 const BASE_URL = "https://api.polygon.io/v2/";
 
-function StockChart() {
+function StockChart({ticker}) {
   const dispatch = useDispatch();
 
   const [buyingPower, setBuyingPower] = useState("");
   const [stockChartData, setStockChartData] = useState(null);
-  const [dateRange, SetDateRange] = useState(90);
+  const [dateRange, setDateRange] = useState(90);
+  const [currentPrice, setCurrentPrice] = useState(0)
+  const [stockName, setStockName] = useState("");
+  // const [activeclass, setActiveClass] = useState("")
+  const [isActive, setActive] = useState(false);
 
-  const user = useSelector((state) => state.session.user);
+
+  const user = useSelector((state) => state.session?.user);
   const portfolio = useSelector((state) => state.portfolio);
-  let { ticker } = useParams();
-  console.log("ticker", ticker);
 
-  // const getStockData = async (ticker) => {
 
-  //       let response = await fetch(`${BASE_URL}aggs/ticker/${ticker}/range/1/day/2023-01-09/2023-01-09?apiKey=${API_KEY}`);
-  //       let data = await response.json()
-  //       console.log("inside the async function", data)
-  //       setStockData(data.results)
-  //       return data
-  //   }
-
-  //   useEffect(() => {
-  //     fetchStockChartData(ticker, 30, setStockChartData)
-  //   }, []);
-  // console.log("stock chart Data,", stockChartData)
 
   useEffect(() => {
+    if (!ticker) {
+      return
+    }
     async function fetchChartData() {
-      const data = await fetchStockChartData(ticker.toUpperCase(), dateRange);
+      const data = await fetchStockChartData(ticker, dateRange);
       const labels = data.results.map((result) =>
         new Date(result.t).toLocaleDateString()
       );
@@ -70,38 +64,27 @@ function StockChart() {
   }, [dateRange, ticker]);
 
   useEffect(() => {
+    if (!ticker) {
+      return;
+    }
+    async function runFetchStockDetails() {
+      const data = await fetchStockDetails(ticker);
+      let openPrice = data.ticker.day.o;
+      let change = data.ticker.todaysChange;
+      let currentPrice = openPrice + change;
+
+      setCurrentPrice(currentPrice)
+      setStockName(data.ticker.ticker)
+    }
+    runFetchStockDetails();
+
+  }, [dateRange, ticker]);
+
+  useEffect(() => {
     dispatch(getUserPortfolio());
   }, [dispatch]);
 
-  // let APPL = getStockData("APPL").then((answer) => answer.data)
-  // console.log("AAPL data", APPL)
-  console.log("stockChartData from component", stockChartData);
 
-  console.log("portfolio from component", portfolio);
-  // console.log("checking stockData", stockData)
-
-  const data = [
-    {
-      x: 0,
-      y: 10,
-    },
-    {
-      x: 5,
-      y: 50,
-    },
-    {
-      x: 10,
-      y: 2,
-    },
-    {
-      x: 15,
-      y: 10,
-    },
-    {
-      x: 20,
-      y: 14,
-    },
-  ];
 
   // Chart.js options
   const options = {
@@ -132,10 +115,19 @@ function StockChart() {
     },
   };
 
+  // const handleChange = (e) => {
+  //   console.log("e from handleChange function", e)
+  // }
+
+   const toggleClass = () => {
+     setActive(!isActive);
+   };
+
   return (
     <div className="chart-container">
       <div className="value-summary">
-        <h1>$50,000</h1>
+        <h1>{stockName}</h1>
+        <h1>{currentPrice}</h1>
         <p>+$55.55 (+0.05%) Today</p>
       </div>
       <div className="line-chart">
@@ -143,12 +135,62 @@ function StockChart() {
       </div>
       <div className="timeline-container">
         <div className="timeline-buttons-container">
-          <div className="timeline-button">1D</div>
-          <div className="timeline-button active">1W</div>
-          <div className="timeline-button">1M</div>
-          <div className="timeline-button">3M</div>
-          <div className="timeline-button">1Y</div>
-          <div className="timeline-button">ALL</div>
+          <div
+            className={isActive ? "timeline-button active" : "timeline-button"}
+            onClick={() => {
+              setDateRange(2);
+              toggleClass();
+            }}
+          >
+            1D
+          </div>
+          <div
+            className={isActive ? "timeline-button active" : "timeline-button"}
+            onClick={() => {
+              setDateRange(7);
+              toggleClass();
+            }}
+          >
+            1W
+          </div>
+          <div
+            className={isActive ? "timeline-button active" : "timeline-button"}
+            onClick={() => {
+              setDateRange(30);
+              toggleClass();
+            }}
+          >
+            1M
+          </div>
+          <div
+            name="3M"
+            className={isActive ? "timeline-button active" : "timeline-button"}
+            // onClick={handleChange("3M")}
+            onClick={() => {
+              setDateRange(90);
+              toggleClass();
+            }}
+          >
+            3M
+          </div>
+          <div
+            className={isActive ? "timeline-button active" : "timeline-button"}
+            onClick={() => {
+              setDateRange(365);
+              toggleClass();
+            }}
+          >
+            1Y
+          </div>
+          <div
+            className={isActive ? "timeline-button active" : "timeline-button"}
+            onClick={() => {
+              setDateRange(365*5);
+              toggleClass();
+            }}
+          >
+            ALL
+          </div>
         </div>
       </div>
       <div className="buying-power-container">

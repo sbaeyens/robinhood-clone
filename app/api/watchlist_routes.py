@@ -8,7 +8,7 @@ from app.forms.watchlist_form import WatchlistForm
 watchlist_routes = Blueprint('watchlists', __name__)
 
 #get all watchlists by userid
-@watchlist_routes.route('/user/<int:userId>')
+@watchlist_routes.route('/user')
 def get_user_watchlists(userId):
     print("TEST INSIDE ROUTE\n\n\n\n\n")
     user = current_user.to_dict()

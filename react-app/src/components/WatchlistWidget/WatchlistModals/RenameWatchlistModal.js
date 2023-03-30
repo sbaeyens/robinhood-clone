@@ -11,7 +11,6 @@ function RenameWatchlistModal({list}) {
     const { closeModal } = useModal();
     let listName = list.name
     const [name, setName] = useState(list.name);
-    console.log("listname from props", list.name)
 
     const handleSubmit = async (e) => {
     e.preventDefault();

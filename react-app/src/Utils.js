@@ -7,8 +7,7 @@ export const fetchStockChartData = async (ticker, dateRange = 0 ) => {
   const from = dateFrom.toISOString().slice(0, 10);
   const url = `https://api.polygon.io/v2/aggs/ticker/${ticker}/range/1/day/${from}/${to}?apiKey=${apiKey}`;
   const response = await fetch(url);
-    const data = await response.json();
-    // console.log("data from inside fetch function", data.results)
+  const data = await response.json();
 
   return data;
 };
@@ -18,7 +17,6 @@ export const fetchStockDetails = async (ticker) => {
     const url = `https://api.polygon.io/v2/snapshot/locale/us/markets/stocks/tickers/${ticker}?apiKey=${apiKey}`;
     const response = await fetch(url);
     const data = await response.json();
-    console.log("data from inside fetch function", data);
     return data;
 
 }

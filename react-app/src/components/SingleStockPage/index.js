@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchStockChartData } from "../../Utils";
 import BuySellWidget from "./BuySellWidget"
 import { fetchStockDetails } from "../../Utils";
+import Transactions from "./Transactions";
 
 const API_KEY = process.env.REACT_APP_POLYGON_API_KEY;
 const BASE_URL = "https://api.polygon.io/v2/";
@@ -21,7 +22,6 @@ function SingleStockPage() {
       useEffect(() => {
         async function runFetchStockDetails() {
           const data = await fetchStockDetails(ticker.toUpperCase());
-          console.log("Stockdetails from useEffect", data);
 
           setStockData(data);
         }
@@ -30,11 +30,17 @@ function SingleStockPage() {
 
 
   return (
-    <div className="app-body">
-      <div className="app-container">
-        <StockChart />
-            <BuySellWidget stockData={stockData} />
+    <div className="app-body-single">
+      <div className="app-container-single">
+        <div className="app-left">
+          <StockChart />
+          <Transactions ticker={ticker} />
+        </div>
+        <div className="app-right">
+          <BuySellWidget stockData={stockData} />
+        </div>
       </div>
+      <div></div>
     </div>
   );
 }

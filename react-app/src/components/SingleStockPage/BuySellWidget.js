@@ -12,9 +12,11 @@ function BuySellWidget({stockData}) {
     const [type, setType] = useState("buy");
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
+
+
   };
-  console.log("stockData", stockData);
 
   const onClickTypeHandler = () => {
     type === "buy" ? setType("sell") : setType("buy");

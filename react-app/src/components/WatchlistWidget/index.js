@@ -18,7 +18,6 @@ function WatchlistWidget() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const watchlists = useSelector((state) => state.watchlists);
-  // console.log("watchlists", watchlists)
 
   // USE STATE
     const [openDropdown, setOpenDropdown] = useState(null);
@@ -35,8 +34,6 @@ function WatchlistWidget() {
   if (!watchlists) return null;
   const watchlistArray = Object.values(watchlists);
 
-  console.log("userid in watchlist widget", user.id);
-  console.log("");
 
     const handleDropdown = (e) => {
       // Edit menu dropdown toggle handler

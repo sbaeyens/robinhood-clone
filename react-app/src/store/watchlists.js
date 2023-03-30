@@ -67,7 +67,6 @@ export const deleteList = (id) => async (dispatch) => {
 };
 
 export const editWatchlist = (watchlist) => async (dispatch) => {
-  console.log("watchlist from thunk", watchlist.id)
   const response = await fetch(`/api/watchlists/${watchlist.id}`, {
     method: "PUT",
     headers: {

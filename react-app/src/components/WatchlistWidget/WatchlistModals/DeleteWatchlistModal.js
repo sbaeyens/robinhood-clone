@@ -10,7 +10,6 @@ function DeleteWatchlistModal({ list }) {
     const { closeModal } = useModal();
     const userId = list?.user_id;
 //   const currentReview = reviews.find((review) => review?.user_id === userId);
-    console.log("userID", userId)
 
     const confirm = (e) => {
         e.preventDefault();

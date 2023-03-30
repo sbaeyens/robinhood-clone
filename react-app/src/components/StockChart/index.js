@@ -28,14 +28,12 @@ function StockChart() {
   const user = useSelector((state) => state.session.user);
   const portfolio = useSelector((state) => state.portfolio);
   let { ticker } = useParams();
-  console.log("ticker", ticker);
 
 
 
   useEffect(() => {
     async function fetchChartData() {
       const data = await fetchStockChartData(ticker.toUpperCase(), dateRange);
-      console.log("API response after fetch", data)
       const labels = data.results.map((result) =>
         new Date(result.t).toLocaleDateString()
       );
@@ -66,12 +64,10 @@ function StockChart() {
   useEffect(() => {
     async function runFetchStockDetails() {
       const data = await fetchStockDetails(ticker.toUpperCase());
-      console.log("Stockdetails from useEffect", data)
       let openPrice = data.ticker.day.o;
       let change = data.ticker.todaysChange;
       let currentPrice = openPrice + change;
-      console.log("change", change);
-      console.log("openPrice", openPrice)
+
       setCurrentPrice(currentPrice)
       setStockName(data.ticker.ticker)
     }
@@ -82,14 +78,6 @@ function StockChart() {
   useEffect(() => {
     dispatch(getUserPortfolio());
   }, [dispatch]);
-
-  // let APPL = getStockData("APPL").then((answer) => answer.data)
-  // console.log("AAPL data", APPL)
-  console.log("stockChartData from component", stockChartData);
-
-  console.log("portfolio from component", portfolio);
-  // console.log("checking stockData", stockData)
-
 
 
 
@@ -122,9 +110,9 @@ function StockChart() {
     },
   };
 
-  const handleChange = (e) => {
-    console.log("e from handleChange function", e)
-  }
+  // const handleChange = (e) => {
+  //   console.log("e from handleChange function", e)
+  // }
 
    const toggleClass = () => {
      setActive(!isActive);
@@ -172,11 +160,11 @@ function StockChart() {
           <div
             name="3M"
             className={isActive ? "timeline-button active" : "timeline-button"}
-            onClick={handleChange("3M")}
-            // onClick={() => {
-            //   setDateRange(90);
-            //   toggleClass();
-            // }}
+            // onClick={handleChange("3M")}
+            onClick={() => {
+              setDateRange(90);
+              toggleClass();
+            }}
           >
             3M
           </div>

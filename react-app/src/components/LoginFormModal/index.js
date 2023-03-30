@@ -29,7 +29,6 @@ function LoginFormModal() {
     closeModal();
   };
 
-
   return (
     <div className="login-form-container">
       <div className="login-form-div">

@@ -29,9 +29,17 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    @property
+    def portfolio_check(self):
+        if self.portfolio:
+            return self.portfolio.to_dict()
+        else:
+            return None
+
     def to_dict(self):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'portfolio': self.portfolio_check
         }

@@ -3,22 +3,47 @@ import "./BuySellWidget.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { addTransaction } from "../../store/transactions";
+import { getTransactionsByTicker } from "../../store/transactions";
+import { getUserPortfolio, updatePortfolio } from "../../store/portfolio";
+import { fetchStockInvestment } from "../../store/investments";
 
 
 
 function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
   const dispatch = useDispatch();
+  const investments = useSelector((state) => state.investments);
 
   const [quantity, setQuantity] = useState(1);
   const [type, setType] = useState("Buy");
   const [price, setPrice] = useState(currentPrice)
   const [totalPrice, setTotalPrice] = useState(currentPrice*quantity)
+  const [currentShares, setCurrentShares] = useState(0)
+  const [errors, setErrors] = useState({})
 
   useEffect(() => {
     setTotalPrice(currentPrice*quantity)
   }, [quantity, currentPrice])
 
+  useEffect(() => {
+    dispatch(fetchStockInvestment(ticker));
+  }, [dispatch, ticker])
+
+  // console.log("investments", investments)
+  if (investments.ticker !== undefined) {
+    let shareQuantity = investments.ticker.quantity;
+    console.log("shareQuantity", shareQuantity)
+    setCurrentShares(shareQuantity);
+  }
+
+  useEffect(() => {
+    if (Object.values(investments).length) {
+      setCurrentShares(investments[ticker].quantity);
+    }
+  },[investments])
+
   const handleSubmit = async (e) => {
+
+    let errorObj = {};
 
     let newTransaction = {
       quantity: Number(quantity),
@@ -31,16 +56,25 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
 
     //logic for posting, editing, or deleting from INVESTMENTS goes here:
 
-      //BUYING:
+    //BUYING:
       //if 0 shares, POST to investments:
+    if (type === "Buy" && currentShares === 0 && Object.value(errors).length === 0) {
+
+    }
 
       //if shares, PUT to investments:
+    if (type === "Buy" && currentShares > 0) {
+
+    }
 
       //SELLING:
       //if shares && order is less than total, PUT to investments:
 
       //if shares && order === total, DELETE from investments:
 
+    dispatch(getTransactionsByTicker(ticker));
+    dispatch(updatePortfolio(newTransaction))
+      // dispatch(getUserPortfolio());
 
     e.preventDefault();
 
@@ -104,7 +138,7 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
             </button>
           </div>
           <div>${portfolio.balance } buying power available</div>
-          <div>{} share(s) available</div>
+          <div>{currentShares} share(s) available</div>
         </form>
       </div>
     </div>

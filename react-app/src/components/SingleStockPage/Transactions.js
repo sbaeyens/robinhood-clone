@@ -35,7 +35,7 @@ function Transactions({ ticker }) {
       {transactionsArray?.map((transaction) => (
         <div className="transaction-card" key={transaction.id}>
           <div>
-            <p>{transaction.stock_id}</p>
+            <p>{transaction.transaction_type.toUpperCase() } - {transaction.stock_id}</p>
             <p>{transaction.date}</p>
           </div>
           <div>

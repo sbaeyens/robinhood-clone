@@ -12,3 +12,18 @@ def get_user_portfolio():
 
 
 # update buying power after purchase/sale
+@portfolio_routes.route('/', methods=["PUT"])
+def update_portfolio():
+
+    res = request.get_json()
+    user = current_user.to_dict()
+    portfolio = Portfolio.query.get(user["portfolio"]["id"])
+
+    if res["transaction_type"] == "Buy":
+        portfolio.balance = portfolio.balance - res["total_expense"]
+        db.session.commit()
+    else:
+        portfolio.balance = portfolio.balance + res["total_expense"]
+        db.session.commit()
+
+    return portfolio.to_dict()

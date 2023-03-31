@@ -63,3 +63,10 @@ def buy_stock(ticker):
         db.session.add(transaction)
         db.session.commit()
         return transaction.to_dict()
+
+@transaction_routes.route('/unauthorized')
+def unauthorized():
+    """
+    Returns unauthorized JSON when flask-login authentication fails
+    """
+    return {'errors': ['Unauthorized']}, 401

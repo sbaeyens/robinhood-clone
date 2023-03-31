@@ -13,6 +13,12 @@
   padding: 15px;
 }
 
+.buy-sell-button-div {
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+}
+
 .order-type {
   display: flex;
   justify-content: space-between;
@@ -20,6 +26,12 @@
 }
 
 .share-quantity {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0px 10px 0px;
+}
+
+.current-price {
   display: flex;
   justify-content: space-between;
   margin: 10px 0px 10px 0px;

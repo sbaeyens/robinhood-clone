@@ -17,13 +17,10 @@ const BASE_URL = "https://api.polygon.io/v2/";
 function SingleStockPage() {
   const dispatch = useDispatch()
   const portfolio = useSelector((state) => state.portfolio);
-
   const [stockData, setStockData] = useState({});
   const [currentPrice, setCurrentPrice] = useState(0);
   const [stockName, setStockName] = useState("");
 
-
-    console.log("stockData", stockData)
 
     let { ticker } = useParams();
 

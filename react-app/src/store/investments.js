@@ -34,7 +34,7 @@ export const fetchStockInvestment = (ticker) => async (dispatch) => {
 
 
 
-const initialState = { investments: null };
+const initialState = {}
 
 // REDUCER
 
@@ -42,9 +42,7 @@ export default function investReducer(state = initialState, action) {
   let newState = { ...state };
   switch (action.type) {
     case GET_ONE_INVESTMENT:
-      let singleInvestment = {};
-      singleInvestment[action.payload.ticker] = action.payload;
-      newState.investments = { ...singleInvestment };
+      newState[action.payload.stock_id]= action.payload
       return newState;
     default:
       return state;

@@ -34,12 +34,9 @@ def get_transactions_by_ticker(ticker):
 @transaction_routes.route('/<string:ticker>', methods=["POST"])
 def buy_stock(ticker):
 
-    print("new transaction roue\n\n\n\n" )
     user = current_user.to_dict()
     portfolio_id = user["portfolio"]["id"]
     res = request.get_json()
-
-    print("res from backendroute\n\n\n\n", res)
 
     if res["transaction_type"] == "Buy":
         form = TransactionBuyForm()
@@ -48,7 +45,6 @@ def buy_stock(ticker):
         form = TransactionSellForm()
         form["csrf_token"].data = request.cookies["csrf_token"]
 
-    print("reached this spot\n\n\n\n\n\n\n", form.data)
     if form.validate_on_submit():
         transaction = Transaction(
             stock_id=ticker,
@@ -59,7 +55,6 @@ def buy_stock(ticker):
             transaction_type=res["transaction_type"],
             date=datetime.now()
         )
-        print("transaction\n\n\n\n\n", transaction)
         db.session.add(transaction)
         db.session.commit()
         return transaction.to_dict()

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserPortfolio } from "../../store/portfolio"
 import { fetchStockChartData, fetchStockDetails } from "../../Utils";
 import { useParams } from "react-router-dom";
+import { addCommas } from "../../Utils";
 
 const API_KEY = process.env.REACT_APP_POLYGON_API_KEY;
 const BASE_URL = "https://api.polygon.io/v2/";
@@ -127,7 +128,7 @@ function StockChart({ticker}) {
     <div className="chart-container">
       <div className="value-summary">
         <h1>{stockName}</h1>
-        <h1>{currentPrice}</h1>
+        <h1>${addCommas(Number(currentPrice).toFixed(2))}</h1>
         <p>+$55.55 (+0.05%) Today</p>
       </div>
       <div className="line-chart">
@@ -185,7 +186,7 @@ function StockChart({ticker}) {
           <div
             className={isActive ? "timeline-button active" : "timeline-button"}
             onClick={() => {
-              setDateRange(365*5);
+              setDateRange(365 * 5);
               toggleClass();
             }}
           >
@@ -195,7 +196,7 @@ function StockChart({ticker}) {
       </div>
       <div className="buying-power-container">
         <h2>Buying Power</h2>
-        <h2>${portfolio?.balance}</h2>
+        <h2>${addCommas(Number(portfolio?.balance).toFixed(2))}</h2>
       </div>
     </div>
   );

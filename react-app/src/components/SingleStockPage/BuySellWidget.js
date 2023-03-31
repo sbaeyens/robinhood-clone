@@ -6,6 +6,7 @@ import { addTransaction } from "../../store/transactions";
 import { getTransactionsByTicker } from "../../store/transactions";
 import { getUserPortfolio, updatePortfolio } from "../../store/portfolio";
 import { fetchStockInvestment } from "../../store/investments";
+import { addCommas } from "../../Utils";
 
 
 
@@ -268,8 +269,15 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
             <p>${totalPrice}</p>
           </div>
           <div className="button-container">{confirmBtn}</div>
-          <div>${portfolio.balance} buying power available</div>
-          <div>{currentShares} share(s) available</div>
+          <div>
+            {type === "Buy"
+              ? `$${addCommas(Number(portfolio?.balance).toFixed(
+                  2
+                ))} buying power available`
+              : `${
+                  investments ? currentShares : 0
+                } Share(s) available`}
+          </div>
         </form>
       </div>
     </div>

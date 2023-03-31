@@ -22,12 +22,26 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
 
     let newTransaction = {
       quantity: Number(quantity),
-      price_at_time: Number(33),
-      total_expense: Number(66),
-      transaction_type: "Buy"
+      price_at_time: Number(currentPrice),
+      total_expense: Number(totalPrice),
+      transaction_type: type
     }
 
     dispatch(addTransaction(ticker, newTransaction));
+
+    //logic for posting, editing, or deleting from INVESTMENTS goes here:
+
+      //BUYING:
+      //if 0 shares, POST to investments:
+
+      //if shares, PUT to investments:
+
+      //SELLING:
+      //if shares && order is less than total, PUT to investments:
+
+      //if shares && order === total, DELETE from investments:
+
+
     e.preventDefault();
 
   };

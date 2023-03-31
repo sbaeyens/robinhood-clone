@@ -31,6 +31,6 @@ class Transaction(db.Model):
             'quantity': self.quantity,
             'price_at_time': self.price_at_time,
             'transaction_type': self.transaction_type,
-            'total_expense': self.price_at_time,
+            'total_expense': self.total_expense,
             'date': self.date,
         }

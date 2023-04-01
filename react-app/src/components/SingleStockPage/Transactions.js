@@ -14,7 +14,7 @@ function Transactions({ ticker }) {
 
     useEffect(() => {
         dispatch(getTransactionsByTicker(ticker));
-    }, [dispatch]);
+    }, [dispatch, ticker]);
 
 
     let transactionsObj = transactions?.transactions

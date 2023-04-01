@@ -5,6 +5,7 @@ import { useEffect, useState} from "react";
 import { thunkGetAllWatchlistsUserId } from "../../store/watchlists";
 import OpenModalButton from "../OpenModalButton";
 import CreateListModal from "../CreateListModal";
+import {NavLink} from "react-router-dom"
 
 
 //
@@ -18,6 +19,9 @@ function WatchlistWidget() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session?.user);
   const watchlists = useSelector((state) => state.watchlists);
+  const investments = useSelector((state) => state.investments);
+
+  const [investmentsData, setInvestmentsData] = useState([])
 
   // USE STATE
     const [openDropdown, setOpenDropdown] = useState(null);
@@ -31,10 +35,27 @@ function WatchlistWidget() {
 
   let tempStockList = ["AAPL", "GOOG", "AMZN"];
 
+  let investmentsArray = []
+  useEffect(() => {
+    console.log("INSIDE USE EFFECT")
+    console.log("investment value", investments)
+    if (investments) {
+      investmentsArray = Object.values(investments)
+      console.log("investmentsArray", investmentsArray)
+      setInvestmentsData(investmentsArray)
+    }
+
+  }, [investments])
+
   // *FIRST RENDER
   if (!user) return null; // If no user
   if (!watchlists) return null;
-  const watchlistArray = Object.values(watchlists);
+  let watchlistArray = []
+  if (watchlists) {
+
+    watchlistArray = Object.values(watchlists);
+  }
+
 
 
     const handleDropdown = (e) => {
@@ -62,9 +83,31 @@ function WatchlistWidget() {
         <div className="watchlist-header">
           <p>Stocks</p>
         </div>
-        <div className="watchlist-content">
-          <div className="watchlist-row">STCK</div>
-          <div className="watchlist-row">MKTG</div>
+        <div className="inv-list">
+
+          {investmentsData.map((inv) => (
+            <NavLink
+              key={inv.stock_id}
+              to={`/stocks/${inv.stock_id}`}
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <div className="inv-card">
+                <div className="inv-tick-share">
+                  <div className="stock-ticker bold">{inv.stock_id}</div>
+                  <div>{inv.quantity} Share(s)</div>
+                </div>
+                <div className="inv-chart-pic">
+
+                </div>
+                <div className="inv-price-change">
+                  <div>{Number(8).toFixed(2)}</div>
+                  <div>+0.00%</div>
+                </div>
+              </div>
+            </NavLink>
+          ))}
+          {/* <div className="watchlist-row">STCK</div>
+          <div className="watchlist-row">MKTG</div> */}
         </div>
         <div className="watchlist-header">
           <p>Lists</p>
@@ -88,15 +131,11 @@ function WatchlistWidget() {
                   onClick={(e) => stopPropagation(e)}
                 >
                   <OptionsModalButton
-                    modalComponent={
-                      <RenameWatchlistModal list={list} />
-                    }
+                    modalComponent={<RenameWatchlistModal list={list} />}
                     buttonText={"Edit"}
                   />
                   <OptionsModalButton
-                    modalComponent={
-                      <DeleteWatchlistModal list={list} />
-                    }
+                    modalComponent={<DeleteWatchlistModal list={list} />}
                     buttonText={"Delete"}
                   />
                 </div>

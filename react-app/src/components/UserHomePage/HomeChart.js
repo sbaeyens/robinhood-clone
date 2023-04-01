@@ -41,10 +41,10 @@ function HomeChart() {
       const labels = historyArr.map((record) =>
         new Date(record.date).toLocaleDateString()
       );
-      console.log("dates for portfolio hist", labels);
+      // console.log("dates for portfolio hist", labels);
 
         const prices = historyArr.map((result) => result.value_at_time);
-        console.log("prices for portfolio hist", prices)
+        // console.log("prices for portfolio hist", prices)
             setStockChartData({
               labels,
               datasets: [

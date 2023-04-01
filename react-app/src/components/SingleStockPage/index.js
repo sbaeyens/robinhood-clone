@@ -21,7 +21,7 @@ function SingleStockPage() {
   const [currentPrice, setCurrentPrice] = useState(0);
   const [stockName, setStockName] = useState("");
 
-
+  console.log("FIRING FROM SINGLE STOCK PAGE")
     let { ticker } = useParams();
 
       useEffect(() => {

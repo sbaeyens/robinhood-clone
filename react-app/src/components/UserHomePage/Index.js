@@ -8,18 +8,25 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchHistory, clearHistoryState } from "../../store/portfolioHistory";
 import HomeChart from "./HomeChart";
+import { fetchAllInvestments, clearInvestmentState } from "../../store/investments";
+
 
 function UserHomePage() {
     const dispatch = useDispatch()
     const user = useSelector((state) => state.session?.user);
+    // const investments = useSelector(
+    //       (state) => state.investments?.investments
+    //     );
+
     // const history = useHistory()
 
     useEffect(() => {
 
       dispatch(fetchHistory());
+      dispatch(fetchAllInvestments());
       return () => {
-
-        dispatch(clearHistoryState());
+          dispatch(clearHistoryState());
+          dispatch(clearInvestmentState());
       };
     }, [dispatch]);
 

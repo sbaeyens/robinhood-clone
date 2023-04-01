@@ -68,3 +68,15 @@
 
 .add-list-button {
 }
+
+/* Investment Card ---------------------------------------- */
+
+.inv-list {
+  padding: 10px 20px 10px 20px;
+}
+
+.inv-card {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+}

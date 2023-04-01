@@ -55,7 +55,7 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
       transaction_type: type,
     };
 
-    dispatch(addTransaction(ticker, newTransaction));
+    await dispatch(addTransaction(ticker, newTransaction));
 
     //logic for posting, editing, or deleting from INVESTMENTS goes here:
 
@@ -66,23 +66,25 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
       currentShares === 0 &&
       Object.values(errors).length === 0
     ) {
-      dispatch(addInvestment(ticker, newTransaction))
+      await dispatch(addInvestment(ticker, newTransaction))
     }
 
     //if shares && order === total, DELETE from investments:
-    if (currentShares === quantity) {
-      dispatch(deleteInvestment(ticker))
+    else if (type === "Sell" && Number(currentShares) === Number(quantity)) {
+      console.log("firing delete thunk")
+      await dispatch(deleteInvestment(ticker))
+      setCurrentShares(0);
     }
 
     //if shares, PUT to investments:
-    if (currentShares > 0) {
-      dispatch(editInvestment(ticker, newTransaction))
+    else if (currentShares > 0) {
+      await dispatch(editInvestment(ticker, newTransaction))
     }
 
 
 
-    dispatch(getTransactionsByTicker(ticker));
-    dispatch(updatePortfolio(newTransaction));
+    await dispatch(getTransactionsByTicker(ticker));
+    await dispatch(updatePortfolio(newTransaction));
     // dispatch(getUserPortfolio());
 
     setConfirm(false);
@@ -275,7 +277,7 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
             <p>Estimated Cost</p>
             <p>${addCommas(Number(totalPrice).toFixed(2))}</p>
           </div>
-          <div className="button-container">{confirmBtn}</div>
+          <div>{confirmBtn}</div>
           <div>
             {type === "Buy"
               ? `$${addCommas(

@@ -104,7 +104,7 @@ function WatchlistWidget() {
               </div>
               {list.stocks.map((stock) => {
                 return (
-                  <div className="watchlist-row">
+                  <div className="watchlist-row" key={stock.ticker}>
                     <div>{stock.ticker}</div>
                   </div>
                 );

@@ -4,8 +4,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { addTransaction } from "../../store/transactions";
 import { getTransactionsByTicker } from "../../store/transactions";
-import { getUserPortfolio, updatePortfolio } from "../../store/portfolio";
-import { fetchStockInvestment } from "../../store/investments";
+import { updatePortfolio } from "../../store/portfolio";
+import { addInvestment, fetchStockInvestment, editInvestment, deleteInvestment } from "../../store/investments";
+import { addCommas } from "../../Utils";
 
 
 
@@ -15,7 +16,7 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
 
   const [quantity, setQuantity] = useState(1);
   const [type, setType] = useState("Buy");
-  const [price, setPrice] = useState(currentPrice);
+  // const [price, setPrice] = useState(currentPrice);
   const [totalPrice, setTotalPrice] = useState(currentPrice * quantity);
   const [currentShares, setCurrentShares] = useState(0);
   const [confirm, setConfirm] = useState(false)
@@ -41,9 +42,10 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
     if (Object.values(investments).length) {
       setCurrentShares(investments[ticker].quantity);
     }
-  }, [investments]);
+  }, [investments, ticker]);
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     let errorObj = {};
 
     let newTransaction = {
@@ -62,24 +64,30 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
     if (
       type === "Buy" &&
       currentShares === 0 &&
-      Object.value(errors).length === 0
+      Object.values(errors).length === 0
     ) {
+      dispatch(addInvestment(ticker, newTransaction))
+    }
+
+    //if shares && order === total, DELETE from investments:
+    if (currentShares === quantity) {
+      dispatch(deleteInvestment(ticker))
     }
 
     //if shares, PUT to investments:
-    if (type === "Buy" && currentShares > 0) {
+    if (currentShares > 0) {
+      dispatch(editInvestment(ticker, newTransaction))
     }
 
-    //SELLING:
-    //if shares && order is less than total, PUT to investments:
 
-    //if shares && order === total, DELETE from investments:
 
     dispatch(getTransactionsByTicker(ticker));
     dispatch(updatePortfolio(newTransaction));
     // dispatch(getUserPortfolio());
 
-    e.preventDefault();
+    setConfirm(false);
+    setQuantity(0)
+
   };
 
   // const onClickTypeHandler = () => {
@@ -170,7 +178,6 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
     );
   }
   if (Object.values(errors).length) {
-    console.log("errorsBtn if");
     confirmBtn = (
       <div>
         <div>
@@ -254,22 +261,28 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
             <p>Shares</p>
 
             <input
-              type="text"
+              type="number"
+              min="0"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
             />
           </div>
           <div className="current-price">
             <p>Market Price</p>
-            <p>${currentPrice}</p>
+            <p>${addCommas(Number(currentPrice).toFixed(2))}</p>
           </div>
           <div className="estimated-cost">
             <p>Estimated Cost</p>
-            <p>${totalPrice}</p>
+            <p>${addCommas(Number(totalPrice).toFixed(2))}</p>
           </div>
           <div className="button-container">{confirmBtn}</div>
-          <div>${portfolio.balance} buying power available</div>
-          <div>{currentShares} share(s) available</div>
+          <div>
+            {type === "Buy"
+              ? `$${addCommas(
+                  Number(portfolio?.balance).toFixed(2)
+                )} buying power available`
+              : `${investments ? currentShares : 0} Share(s) available`}
+          </div>
         </form>
       </div>
     </div>

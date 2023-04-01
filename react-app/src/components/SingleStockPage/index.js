@@ -1,18 +1,18 @@
 import React from "react";
-import WatchlistWidget from "../WatchlistWidget";
+// import WatchlistWidget from "../WatchlistWidget";
 import StockChart from "../StockChart";
 import "./SingleStockPage.css";
-import { useParams, NavLink, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchStockChartData } from "../../Utils";
+// import { fetchStockChartData } from "../../Utils";
 import BuySellWidget from "./BuySellWidget"
 import { fetchStockDetails } from "../../Utils";
 import Transactions from "./Transactions";
 import { getUserPortfolio } from "../../store/portfolio";
 
-const API_KEY = process.env.REACT_APP_POLYGON_API_KEY;
-const BASE_URL = "https://api.polygon.io/v2/";
+// const API_KEY = process.env.REACT_APP_POLYGON_API_KEY;
+// const BASE_URL = "https://api.polygon.io/v2/";
 
 function SingleStockPage() {
   const dispatch = useDispatch()

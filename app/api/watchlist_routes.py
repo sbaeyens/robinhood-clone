@@ -9,7 +9,7 @@ watchlist_routes = Blueprint('watchlists', __name__)
 
 #get all watchlists by userid
 @watchlist_routes.route('/user')
-def get_user_watchlists(userId):
+def get_user_watchlists():
     print("TEST INSIDE ROUTE\n\n\n\n\n")
     user = current_user.to_dict()
     print("USER \n\n\n\n\n", user)

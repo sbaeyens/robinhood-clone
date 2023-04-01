@@ -9,7 +9,7 @@ class Portfolio_History(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     portfolio_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('portfolios.id')), nullable=False)
-    value = db.Column(db.Float, nullable=False)
+    value_at_time = db.Column(db.Float, nullable=False)
     date = db.Column(db.DateTime, nullable=False)
 
 
@@ -22,6 +22,6 @@ class Portfolio_History(db.Model):
         return {
             'id': self.id,
             'portfolio_id': self.portfolio_id,
-            'value': self.value,
+            'value_at_time': self.value_at_time,
             'date': self.date,
         }

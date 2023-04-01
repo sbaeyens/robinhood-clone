@@ -277,7 +277,7 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
             <p>Estimated Cost</p>
             <p>${addCommas(Number(totalPrice).toFixed(2))}</p>
           </div>
-          <div className="button-container">{confirmBtn}</div>
+          <div>{confirmBtn}</div>
           <div>
             {type === "Buy"
               ? `$${addCommas(

@@ -90,3 +90,125 @@
   border-bottom: 3px solid green;
   color: green;
 }
+
+/* buttons and confirmation */
+
+.pad20 {
+  padding: 25px 0px 25px 0px;
+  /* border: var(--global-border); */
+}
+
+.buy-sell-form-div {
+  /* border: var(--global-border); */
+  width: 86%;
+}
+
+/* .selected {
+  border-bottom: 3px solid green;
+  color: green;
+} */
+
+.info-icon {
+  border: 2px solid black;
+  font-size: 10px;
+  padding: 0px 5px;
+  margin-left: 8px;
+  border-radius: 100%;
+}
+
+.error-icon {
+  margin: 0px 8px 0px 0px;
+}
+
+.error-message-div {
+  padding-bottom: 15px;
+}
+
+.buying-power-div {
+  text-align: center;
+  width: 100%;
+  border-top: 1px solid lightgray;
+  padding: 20px 0px;
+}
+
+.buy-sell-text {
+  display: flex;
+  align-items: center;
+}
+
+.buy-sell-in-select {
+  appearance: none;
+  padding-left: 15px;
+  width: 61%;
+  height: 50px;
+  font-size: 18px;
+  border-radius: 5px;
+  /* background-image: url("./triangle-icon2.png"); */
+  /* background-repeat: no-repeat;
+  background-position: right 0.7rem top 50%;
+  background-size: 1rem auto; */
+  cursor: not-allowed;
+  transition-timing-function: ease-in-out;
+  transition-duration: 500ms;
+}
+
+.buy-sell-in-select:hover {
+  box-shadow: 2px 2px 10px gray;
+}
+
+.shares-input {
+  border-top: 1px solid gray;
+  background-color: rgba(211, 211, 211, 0.566);
+  padding: 0px 15px;
+  width: 50%;
+  height: 45px;
+  font-size: 18px;
+  border-radius: 5px;
+  text-align: right;
+}
+
+.shares-input:hover {
+  background-color: white;
+}
+
+.buy-sell-price-div {
+  padding: 10px 0px 35px 0px;
+  border-bottom: 1px solid lightgray;
+}
+
+.buy-sell-cost-div {
+  padding: 20px 0px 35px 0px;
+}
+
+.review-button-div {
+  /* border: var(--global-border); */
+  display: flex;
+  justify-content: center;
+}
+
+.review-button {
+  background-color: green;
+  width: 100%;
+  border: 2px solid gray;
+  box-shadow: 1px 1px 3px gray;
+  border-color: gray;
+  border-radius: 25px;
+  color: white;
+  height: 50px;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+.review-text {
+  margin: 10px 0px 25px 0px;
+}
+
+.edit-button {
+  background-color: white;
+  border-color: green;
+  color: green;
+}
+
+.review-button:hover {
+  filter: grayscale(20%);
+}

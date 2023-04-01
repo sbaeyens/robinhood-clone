@@ -6,6 +6,24 @@ from flask_login import current_user
 
 investment_routes = Blueprint('investments', __name__)
 
+def to_dict_list(data):
+    '''
+    turn a query into a to_dict list
+    '''
+    return [item.to_dict() for item in list(data)]
+
+# get all investments by user
+@investment_routes.route("/")
+def get_current_user_investments():
+
+    portfolio_id = current_user.to_dict()["portfolio"]["id"]
+
+    investment_data = Investment.query.filter(Investment.portfolio_id == portfolio_id).order_by(Investment.id.desc())
+
+    investment_list = to_dict_list(investment_data)
+
+    return investment_list
+
 # get investment by ticker
 @investment_routes.route("/<string:ticker>")
 def get_investment_by_ticker(ticker):

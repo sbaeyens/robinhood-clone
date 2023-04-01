@@ -9,7 +9,7 @@ def seed_stocks():
         {"ticker": "AMZN", "company_name": "Amazon.com"},
         {"ticker": "MSFT", "company_name": "Microsoft Corp"},
         {"ticker": "NVDA", "company_name": "NVIDIA Corp."},
-        {"ticker": "GOOGL", "company_name": "Alphabet"},
+        {"ticker": "GOOG", "company_name": "Alphabet"},
         {"ticker": "PEP", "company_name": "PepsiCo"},
         {"ticker": "COST", "company_name": "Costco Wholesale Corp"},
         {"ticker": "CMCSA", "company_name": "Comcast Corp"},

@@ -31,6 +31,7 @@ const actionEditWatchlist = (watchlist) => ({
 // THUNKS
 export const thunkGetAllWatchlistsUserId = () => async (dispatch) => {
 //   const response = await fetch(`/api/users/${+id}/watchlists`)
+  console.log("watchlist THUNK!!!!!!!!!")
   const response = await fetch(`/api/watchlists/user`)
 
   if (response.ok) {

@@ -24,7 +24,7 @@ function LoginFormModal() {
   const handleDemoClick = async () => {
     setPassword("password");
     setEmail("demo@aa.io");
-    const data = await dispatch(login("demo@aa.io", "password"));
+    dispatch(login("demo@aa.io", "password"));
     // await dispatch(fetchCartItems());
     closeModal();
   };

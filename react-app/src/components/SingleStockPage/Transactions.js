@@ -1,12 +1,9 @@
 import React from "react";
 
 import "./Transactions.css";
-import { useParams, NavLink, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+// import { useParams, NavLink, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchStockChartData } from "../../Utils";
-import BuySellWidget from "./BuySellWidget";
-import { fetchStockDetails } from "../../Utils";
 import { getTransactionsByTicker } from "../../store/transactions";
 
 

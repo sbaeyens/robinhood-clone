@@ -5,13 +5,15 @@ import session from './session'
 import transactionReducer from './transactions';
 import watchlistReducer from './watchlists'
 import investmentReducer from './investments'
+import historyReducer from './portfolioHistory';
 
 const rootReducer = combineReducers({
   session,
   watchlists: watchlistReducer,
   portfolio: portfolioReducer,
   transactions: transactionReducer,
-  investments: investmentReducer
+  investments: investmentReducer,
+  history: historyReducer
 });
 
 

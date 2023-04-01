@@ -72,3 +72,20 @@ def edit_investment(ticker):
         db.session.commit()
 
     return investment.to_dict()
+
+#delete route
+@investment_routes.route("/<string:ticker>", methods=["DELETE"])
+def delete_investment(ticker):
+
+
+    portfolio_id = current_user.to_dict()["portfolio"]["id"]
+
+    investment = Investment.query.filter(
+        Investment.portfolio_id == portfolio_id,
+        Investment.stock_id == ticker
+        ).first()
+
+    db.session.delete(investment)
+    db.session.commit()
+
+    return {"Response": f"Successfully sold all shares of {ticker}"}

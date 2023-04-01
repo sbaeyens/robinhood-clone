@@ -8,6 +8,9 @@ Create Date: 2023-03-30 14:45:00.308694
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
 revision = '76ea33ae87a5'
@@ -22,6 +25,8 @@ def upgrade():
         batch_op.add_column(sa.Column('transaction_type', sa.String(), nullable=False))
 
     # ### end Alembic commands ###
+    if environment == "production":
+        op.execute(f"ALTER TABLE transactions SET SCHEMA {SCHEMA};")
 
 
 def downgrade():

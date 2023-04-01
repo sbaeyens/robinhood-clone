@@ -6,6 +6,7 @@ def seed_portfolios():
     portfolios = [
         {'owner_id': 1, 'balance': 10000, },
         {'owner_id': 2, 'balance': 20000, },
+        {'owner_id': 3, 'balance': 20000, },
     ]
 
     for portfolio in portfolios:

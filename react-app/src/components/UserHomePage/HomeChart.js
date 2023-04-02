@@ -25,6 +25,9 @@ function HomeChart() {
   // const [activeclass, setActiveClass] = useState("")
   const [isActive, setActive] = useState(false);
   const [portfolioTotal, setPortfolioTotal] = useState(0)
+  const [portfolioGain, setPortfolioGain] = useState((3577).toFixed(2));
+  const [portfolioPercent, setPortfolioPercent] = useState(47.69);
+  const [rangeText, setRangeText] = useState("All Time")
 
   // const user = useSelector((state) => state.session?.user);
     const portfolio = useSelector((state) => state.portfolio);
@@ -71,52 +74,71 @@ function HomeChart() {
               ],
             });
     }
+      console.log("stockChartData", stockChartData);
 
-
-//     async function fetchHistory() {
-//       const data = await fetchStockChartData();
-//       const labels = data.results.map((result) =>
-//         new Date(result.t).toLocaleDateString()
-//       );
-//       const prices = data.results.map((result) => result.c);
-//       setStockChartData({
-//         labels,
-//         datasets: [
-//           {
-//             data: prices,
-//             backgroundColor: "none",
-//             borderColor: "#5AC53B",
-//             borderWidth: 2,
-//             pointBorderColor: "rgba(0, 0, 0, 0)",
-//             pointBackgroundColor: "rgba(0, 0, 0, 0)",
-//             pointHoverBackgroundColor: "#5AC53B",
-//             pointHoverBorderColor: "#000000",
-//             pointHoverBorderWidth: 4,
-//             pointHoverRadius: 6,
-//             tension: 0.0,
-//             fill: false,
-//           },
-//         ],
-//       });
-//     }
-//     fetchHistory();
     }, [history]);
 
-//   useEffect(() => {
-//     if (!ticker) {
-//       return;
-//     }
-//     async function runFetchStockDetails() {
-//       const data = await fetchStockDetails(ticker);
-//       let openPrice = data.ticker.day.o;
-//       let change = data.ticker.todaysChange;
-//       let currentPrice = openPrice + change;
+  console.log("stockChartData", stockChartData);
 
-//       setCurrentPrice(currentPrice);
-//       setStockName(data.ticker.ticker);
-//     }
-//     runFetchStockDetails();
-//   }, [dateRange, ticker]);
+  useEffect(() => {
+    if (!history) {
+      return;
+    }
+    let historyArr = Object.values(history);
+    let labels = historyArr.map((record) =>
+      new Date(record.date).toLocaleDateString()
+    );
+
+    let prices = historyArr.map((result) => result.value_at_time);
+
+    labels = labels.slice(-1 * dateRange)
+    prices = prices.slice(-1 * dateRange)
+
+    // console.log("dates for portfolio hist", labels);
+
+    let mostRecentRecord = prices[prices.length - 1];
+    console.log("mostRecentRecord", mostRecentRecord);
+    setPortfolioTotal(mostRecentRecord);
+    let gain = (prices[prices.length-1] - prices[0]).toFixed(2)
+    setPortfolioGain(gain)
+    let percentGain = (gain / prices[0]*100).toFixed(2)
+    setPortfolioPercent(percentGain)
+
+    if (dateRange === 2) {
+      setRangeText("Past Day");
+    } else if (dateRange === 7) {
+      setRangeText("Past Week");
+    } else if (dateRange === 30) {
+      setRangeText("Past Month");
+    } else if (dateRange === 90) {
+      setRangeText("Past 3 Months");
+    } else if (dateRange === 365) {
+      setRangeText("Past Year");
+    } else {
+      setRangeText("All Time");
+    }
+
+    // console.log("prices for portfolio hist", prices)
+    setStockChartData({
+      labels,
+      datasets: [
+        {
+          data: prices,
+          backgroundColor: "none",
+          borderColor: "#5AC53B",
+          borderWidth: 2,
+          pointBorderColor: "rgba(0, 0, 0, 0)",
+          pointBackgroundColor: "rgba(0, 0, 0, 0)",
+          pointHoverBackgroundColor: "#5AC53B",
+          pointHoverBorderColor: "#000000",
+          pointHoverBorderWidth: 4,
+          pointHoverRadius: 6,
+          tension: 0.0,
+          fill: false,
+        },
+      ],
+    });
+  }, [dateRange]);
 
   useEffect(() => {
     dispatch(getUserPortfolio());
@@ -151,6 +173,8 @@ function HomeChart() {
     },
   };
 
+
+
   // const handleChange = (e) => {
   //   console.log("e from handleChange function", e)
   // }
@@ -164,7 +188,7 @@ function HomeChart() {
       <div className="value-summary">
         <h1>{stockName}</h1>
         <h1>${addCommas(Number(portfolioTotal).toFixed(2))}</h1>
-        <p>+$55.55 (+0.05%) Today</p>
+        <p>+${portfolioGain} (+{portfolioPercent}%) {rangeText}</p>
       </div>
       <div className="line-chart">
         {stockChartData && <Line data={stockChartData} options={options} />}

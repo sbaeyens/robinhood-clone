@@ -24,7 +24,7 @@ const CreateListModal = () => {
   };
 
   return (
-    <form className="list-form">
+    <form className="create-modal-container">
       <h2>Create a List</h2>
       <div className="list-text-div">
         <input
@@ -36,7 +36,7 @@ const CreateListModal = () => {
       </div>
 
       <button
-        className="submit-form-btn"
+        className="create-button"
         onClick={handleSubmit}
         // disabled={errors.length ? true : false}
       >

@@ -39,6 +39,9 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
   }
 
   useEffect(() => {
+    if (!investments) {
+      return
+    }
     if (Object.values(investments).length) {
       setCurrentShares(investments[ticker].quantity);
     }

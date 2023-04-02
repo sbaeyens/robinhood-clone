@@ -18,6 +18,7 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray;
   padding: 20px 20px 10px 20px;
   font-weight: 800;
 }
@@ -32,7 +33,6 @@
   height: 60px;
   padding: 0 24px;
   align-items: center;
-  cursor: pointer;
   border: 1px solid lightgrey;
 }
 
@@ -42,8 +42,12 @@
   height: 60px;
   padding: 0 15px;
   align-items: center;
-  cursor: pointer;
   font-weight: 600;
+}
+
+.watchlists-button-container {
+  display: flex;
+  align-items: center;
 }
 
 .watchlist-lists {
@@ -67,6 +71,23 @@
 }
 
 .add-list-button {
+  background-color: white;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: x-large;
+}
+
+.add-list-button:hover {
+  background-color: lightgrey;
+}
+
+.watchlist-buttons-container {
+  /* border: var(--global-border); */
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Investment Card ---------------------------------------- */
@@ -79,4 +100,98 @@
   display: flex;
   justify-content: space-between;
   padding-bottom: 15px;
+}
+
+/* Dropdown styling options ---------------------------------------- */
+
+/*
+
+.watchlist-drop-div {
+  display: flex;
+  align-items: center;
+  margin: 10px 10px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.watchlist-drop-div:hover {
+  background-color: grey;
+}
+
+.watchlist-drop-icon {
+  padding: 5px 8px 0px 0px;
+  font-size: 15px;
+} */
+
+/* .watchlist-drop-options {
+  position: absolute;
+  width: 200px;
+  height: 90px;
+  right: 70px;
+  border: 1px solid lightgray;
+  background-color: white;
+  border-radius: 5px;
+  z-index: 1;
+} */
+
+.watchlist-drop-options {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  padding: 10px;
+}
+
+/* .watchlist-option-div {
+  display: flex;
+  align-items: center;
+} */
+.watchlist-option-div {
+  position: relative;
+}
+
+.watchlist-button-div {
+  margin-right: 10px;
+}
+
+.watchlist-button {
+  color: #333;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.watchlist-drop-options.hidden {
+  display: none;
+}
+
+.watchlist-drop-div {
+  margin-bottom: 10px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.watchlist-modal-btn {
+  display: inline-block;
+  padding: 8px 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.watchlist-modal-btn:hover {
+  background-color: #3e8e41;
+}
+
+.modal-icon {
+  margin-right: 5px;
+  font-size: 16px;
 }

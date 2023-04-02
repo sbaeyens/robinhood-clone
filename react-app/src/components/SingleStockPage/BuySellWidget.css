@@ -1,5 +1,5 @@
 .buy-sell-widget {
-  flex: 0.3;
+  flex: 0.4;
   display: flex;
   flex-direction: column;
   padding: 0px 30px 30px 30px;
@@ -11,6 +11,10 @@
   border-radius: 5px;
   border: 1px solid lightgray;
   padding: 15px;
+}
+
+.buy-sell-widget-container form {
+  width: 300px;
 }
 
 .buy-sell-button-div {
@@ -211,4 +215,15 @@
 
 .review-button:hover {
   filter: grayscale(20%);
+}
+
+.share-quantity input {
+  border-top: 1px solid gray;
+  background-color: rgba(211, 211, 211, 0.566);
+  padding: 0px 15px;
+  width: 50%;
+  height: 45px;
+  font-size: 18px;
+  border-radius: 5px;
+  text-align: right;
 }

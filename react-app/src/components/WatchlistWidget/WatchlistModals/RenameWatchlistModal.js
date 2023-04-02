@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import "./WatchlistModal.css";
+import "./RenameWatchlistModal.css";
 import { useModal } from "../../../context/Modal";
 import { editWatchlist } from "../../../store/watchlists";
 
@@ -25,25 +25,27 @@ function RenameWatchlistModal({list}) {
     };
 
   return (
-    <form className="list-form">
-      <h2>Edit List Name</h2>
-      <div className="list-text-div">
-        <input
-          className="list-input-text"
-          placeholder="List Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        ></input>
-      </div>
+    <div className="rename-modal-container">
+      <form className="list-form">
+        <h2>Edit List Name</h2>
+        <div className="list-text-div">
+          <input
+            className="list-input-text"
+            placeholder="List Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          ></input>
+        </div>
 
-      <button
-        className="submit-form-btn"
-        onClick={handleSubmit}
-        // disabled={errors.length ? true : false}
-      >
-        Create List
-      </button>
-    </form>
+        <button
+          className="create-button"
+          onClick={handleSubmit}
+          // disabled={errors.length ? true : false}
+        >
+          Edit List
+        </button>
+      </form>
+    </div>
   );
 }
 

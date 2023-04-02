@@ -8,7 +8,7 @@ def seed_transactions():
         {'portfolio_id': 1, 'stock_id': 'AAPL', 'quantity': 2, 'transaction_type': 'Buy', 'price_at_time': 30.50, 'total_expense':70.00, 'date':datetime(2023, 1, 21)},
         {'portfolio_id': 1, 'stock_id': 'AMZN', 'quantity': 3, 'transaction_type': 'Buy', 'price_at_time': 5.00, 'total_expense':15.00, 'date':datetime(2023, 2, 15)},
         {'portfolio_id': 1, 'stock_id': 'GOOG', 'quantity': 5, 'transaction_type': 'Buy', 'price_at_time': 10.00, 'total_expense':50.00, 'date':datetime(2023, 2, 15)},
-        {'portfolio_id': 1, 'stock_id': 'GOOG', 'quantity': 2, 'transaction_type': 'Sell', 'price_at_time': 20.00, 'total_expense':40.00, 'date':datetime(2023, 3, 10)},
+        {'portfolio_id': 1, 'stock_id': 'GOOG', 'quantity': 4, 'transaction_type': 'Sell', 'price_at_time': 20.00, 'total_expense':40.00, 'date':datetime(2023, 3, 10)},
 
     ]
 

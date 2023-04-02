@@ -15,7 +15,7 @@
   padding: 20px;
 }
 
-.list-form h2 {
+.create-modal-container h2 {
   padding: 20px;
 }
 
@@ -38,4 +38,27 @@
   height: 25px;
   border-radius: 5px;
   border: 1px solid lightgray;
+  padding: 2px;
+}
+
+.errors {
+  color: red;
+  font-size: 70%;
+  /* padding: 10px, 10px, 10px, 10px; */
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.create-button:disabled {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 85%;
+  padding: 10px;
+  border: 2px solid lightcoral;
+  border-radius: 20px;
+  background-color: lightcoral;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.5s ease-out, background-color 0.5s ease-out,
+    color 0.5s ease-out;
 }

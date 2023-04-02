@@ -10,7 +10,8 @@ function RenameWatchlistModal({list}) {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     let listName = list.name
-    const [name, setName] = useState(list.name);
+  const [name, setName] = useState(list.name);
+  const [errors, setErrors] = useState([]);
 
     const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,6 +25,15 @@ function RenameWatchlistModal({list}) {
     closeModal();
     };
 
+    useEffect(() => {
+      const errors = [];
+      if (name.length < 1)
+        errors.push("List name cannot be empty");
+      if (name.length > 25)
+        errors.push("List name cannot be longer than 25 characters");
+      setErrors(errors);
+    }, [name]);
+
   return (
     <div className="rename-modal-container">
       <form className="list-form">
@@ -36,11 +46,15 @@ function RenameWatchlistModal({list}) {
             onChange={(e) => setName(e.target.value)}
           ></input>
         </div>
-
+        <div className="errors">
+          {errors.map((err) => (
+            <div key={err}>{err}</div>
+          ))}
+        </div>
         <button
           className="create-button"
           onClick={handleSubmit}
-          // disabled={errors.length ? true : false}
+          disabled={errors.length ? true : false}
         >
           Edit List
         </button>

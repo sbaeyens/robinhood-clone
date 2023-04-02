@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { addTransaction } from "../../store/transactions";
 import { getTransactionsByTicker } from "../../store/transactions";
 import { updatePortfolio } from "../../store/portfolio";
-import { addInvestment, fetchStockInvestment, editInvestment, deleteInvestment } from "../../store/investments";
+import { addInvestment, fetchStockInvestment, editInvestment, deleteInvestment, clearInvestmentState } from "../../store/investments";
 import { addCommas } from "../../Utils";
 
 
@@ -29,6 +29,8 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
 
   useEffect(() => {
     dispatch(fetchStockInvestment(ticker));
+
+    return () => clearInvestmentState()
   }, [dispatch, ticker]);
 
   // console.log("investments", investments)
@@ -39,11 +41,15 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
   }
 
   useEffect(() => {
-    if (!investments) {
-      return
-    }
+    // if (!investments.ticker) {
+    //   return
+    // }
     if (Object.values(investments).length) {
-      setCurrentShares(investments[ticker].quantity);
+      console.log("investments from useEffect", investments)
+      setCurrentShares(investments[ticker]?.quantity)
+      if (investments[ticker] === undefined) {
+        setCurrentShares(0);
+      }
     }
   }, [investments, ticker]);
 
@@ -111,10 +117,10 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
     if (
       investments &&
       type === "Sell" &&
-      quantity > investments[ticker].quantity
+      quantity > currentShares
     ) {
       errorObj.type = "Not Enough Shares";
-      errorObj.message = `You can sell at most ${investments[ticker].quantity} share(s) of ${ticker}`;
+      errorObj.message = `You can sell at most ${currentShares} share(s) of ${ticker}`;
     }
     if (type === "Buy" && quantity > portfolio.balance) {
       errorObj.type = "Not Enough Buying Power";

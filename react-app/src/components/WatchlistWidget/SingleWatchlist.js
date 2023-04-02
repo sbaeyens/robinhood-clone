@@ -1,12 +1,11 @@
 import React from "react";
 import "./WatchlistWidget.css";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState, useRef} from "react";
+import { useEffect, useState, useRef } from "react";
 import { thunkGetAllWatchlistsUserId } from "../../store/watchlists";
 import OpenModalButton from "../OpenModalButton";
 import CreateListModal from "../CreateListModal";
-import {NavLink} from "react-router-dom"
-
+import { NavLink } from "react-router-dom";
 
 //
 import OptionsModalButton from "./WatchlistModals/OptionsModalButton";
@@ -14,8 +13,7 @@ import OptionsModalButton from "./WatchlistModals/OptionsModalButton";
 import RenameWatchlistModal from "./WatchlistModals/RenameWatchlistModal";
 import DeleteWatchlistModal from "./WatchlistModals/DeleteWatchlistModal";
 
-
-function WatchlistWidget() {
+function SingleWatchlist({list}) {
   const dropdownRef = useRef();
   let [showMenu, setShowMenu] = useState(false);
   const dispatch = useDispatch();
@@ -68,7 +66,6 @@ function WatchlistWidget() {
   if (watchlists) {
     watchlistArray = Object.values(watchlists);
   }
-
 
   // Event Handlers ------------------------------------------------------------------------------------------------------------
   const openMenu = () => {
@@ -167,7 +164,10 @@ function WatchlistWidget() {
                           buttonText="Edit list"
                           onItemClick={closeMenu}
                           modalComponent={
-                            <RenameWatchlistModal id={list.id} name={list.name} />
+                            <RenameWatchlistModal
+                              id={list.id}
+                              name={list.name}
+                            />
                           }
                           modalClass="watchlist-modal-btn bold"
                           modalIcon={editIcon}
@@ -211,4 +211,4 @@ function WatchlistWidget() {
   );
 }
 
-export default WatchlistWidget;
+export default SingleWatchlist;

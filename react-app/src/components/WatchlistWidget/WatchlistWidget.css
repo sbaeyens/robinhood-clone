@@ -18,6 +18,7 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray;
   padding: 20px 20px 10px 20px;
   font-weight: 800;
 }
@@ -32,7 +33,6 @@
   height: 60px;
   padding: 0 24px;
   align-items: center;
-  cursor: pointer;
   border: 1px solid lightgrey;
 }
 
@@ -42,8 +42,12 @@
   height: 60px;
   padding: 0 15px;
   align-items: center;
-  cursor: pointer;
   font-weight: 600;
+}
+
+.watchlists-button-container {
+  display: flex;
+  align-items: center;
 }
 
 .watchlist-lists {
@@ -67,6 +71,23 @@
 }
 
 .add-list-button {
+  background-color: white;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  border: none;
+  font-size: x-large;
+}
+
+.add-list-button:hover {
+  background-color: lightgrey;
+}
+
+.watchlist-buttons-container {
+  /* border: var(--global-border); */
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Investment Card ---------------------------------------- */
@@ -79,4 +100,36 @@
   display: flex;
   justify-content: space-between;
   padding-bottom: 15px;
+}
+
+/* Dropdown styling options ---------------------------------------- */
+
+.watchlist-drop-options {
+  /* border: var(--global-border); */
+  position: absolute;
+  width: 200px;
+  height: 90px;
+  right: 70px;
+  border: 1px solid lightgray;
+  background-color: white;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.watchlist-drop-div {
+  /* border: var(--global-border); */
+  display: flex;
+  align-items: center;
+  margin: 10px 10px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.watchlist-drop-div:hover {
+  background-color: grey;
+}
+
+.watchlist-drop-icon {
+  padding: 5px 8px 0px 0px;
+  font-size: 15px;
 }

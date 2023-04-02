@@ -16,11 +16,11 @@
 .app-left {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 60%;
 }
 
 .app-right {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 40%;
 }

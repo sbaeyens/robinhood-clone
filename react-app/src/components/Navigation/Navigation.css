@@ -15,23 +15,6 @@
   color: black;
 }
 
-.nav-search {
-  display: flex;
-  justify-content: center;
-  /* width: 75%; */
-  /* Trying to get rid of white space between -anton */
-  width: 30%;
-}
-
-/* .nav-search-bar {
-  border-radius: 0;
-  padding: 15px;
-  height: 30px;
-
-  width: 100%;
-  border: 1px solid lightgray;
-} */
-
 .nav-search > input:focus {
   outline: none;
 }
@@ -192,7 +175,7 @@
   justify-content: space-around;
   border-radius: 5px;
   margin: 5px 0 0 10px;
-  width: 40vw;
+  width: 600px;
   height: 40px;
 }
 
@@ -213,13 +196,16 @@
 
 /* search ------------------------------------- */
 
+/* .search-container {
+}
+
 .search-dropdown {
   position: absolute;
   z-index: 1;
   background-color: white;
-  /* border-bottom: 1px solid gray;
+  border-bottom: 1px solid gray;
   border-right: 1px solid gray;
-  border-left: 1px solid gray; */
+  border-left: 1px solid gray;
   padding: 10px;
   border-radius: 0px 0px 5px 5px;
   width: 38vw;
@@ -232,6 +218,10 @@
   display: flex;
 }
 
+.search-results:hover {
+  background-color: lightgray;
+}
+
 .search-ticker {
   width: 60px;
 }
@@ -239,4 +229,43 @@
 .search-divider {
   width: 20px;
   border-left: 1px solid black;
+} */
+
+.nav-search {
+  position: relative;
+}
+.nav-search-bar {
+  width: 100%;
+  padding: 8px 40px 8px 10px;
+  font-size: 16px;
+  /* border: 1px solid #ccc; */
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+.search-dropdown {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  right: 0;
+  z-index: 1;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+}
+.search-results {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-results:hover {
+  background-color: lightgray;
+}
+
+.search-ticker {
+  font-weight: bold;
+  margin-right: 10px;
 }

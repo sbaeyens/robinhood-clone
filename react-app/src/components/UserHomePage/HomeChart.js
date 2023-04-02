@@ -188,7 +188,9 @@ function HomeChart() {
       <div className="value-summary">
         <h1>{stockName}</h1>
         <h1>${addCommas(Number(portfolioTotal).toFixed(2))}</h1>
-        <p>+${portfolioGain} (+{portfolioPercent}%) {rangeText}</p>
+        <p>
+          +${portfolioGain} (+{portfolioPercent}%) {rangeText}
+        </p>
       </div>
       <div className="line-chart">
         {stockChartData && <Line data={stockChartData} options={options} />}
@@ -196,7 +198,7 @@ function HomeChart() {
       <div className="timeline-container">
         <div className="timeline-buttons-container">
           <div
-            className={isActive ? "timeline-button active" : "timeline-button"}
+            className={`timeline-button ${dateRange === 2 ? "active" : ""}`}
             onClick={() => {
               setDateRange(2);
               toggleClass();
@@ -205,7 +207,7 @@ function HomeChart() {
             1D
           </div>
           <div
-            className={isActive ? "timeline-button active" : "timeline-button"}
+            className={`timeline-button ${dateRange === 7 ? "active" : ""}`}
             onClick={() => {
               setDateRange(7);
               toggleClass();
@@ -214,7 +216,7 @@ function HomeChart() {
             1W
           </div>
           <div
-            className={isActive ? "timeline-button active" : "timeline-button"}
+            className={`timeline-button ${dateRange === 30 ? "active" : ""}`}
             onClick={() => {
               setDateRange(30);
               toggleClass();
@@ -224,7 +226,7 @@ function HomeChart() {
           </div>
           <div
             name="3M"
-            className={isActive ? "timeline-button active" : "timeline-button"}
+            className={`timeline-button ${dateRange === 2 ? "active" : ""}`}
             // onClick={handleChange("3M")}
             onClick={() => {
               setDateRange(90);
@@ -234,7 +236,7 @@ function HomeChart() {
             3M
           </div>
           <div
-            className={isActive ? "timeline-button active" : "timeline-button"}
+            className={`timeline-button ${dateRange === 2 ? "active" : ""}`}
             onClick={() => {
               setDateRange(365);
               toggleClass();
@@ -243,7 +245,7 @@ function HomeChart() {
             1Y
           </div>
           <div
-            className={isActive ? "timeline-button active" : "timeline-button"}
+            className={`timeline-button ${dateRange === 2 ? "active" : ""}`}
             onClick={() => {
               setDateRange(365 * 5);
               toggleClass();

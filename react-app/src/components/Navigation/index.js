@@ -49,7 +49,7 @@ function Navigation({ isLoaded }){
         </NavLink>
       </div>
       <div className="nav-search">
-        {/* <i className="fas fa-search" /> */}
+        <i className="fas fa-search" />
         <input
           className="nav-search-bar"
           type="text"

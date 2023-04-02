@@ -136,7 +136,7 @@ function StockChart({ticker}) {
       <div className="timeline-container">
         <div className="timeline-buttons-container">
           <div
-            className={isActive ? "timeline-button active" : "timeline-button"}
+            className={`timeline-button ${dateRange === 2 ? "active" : ""}`}
             onClick={() => {
               setDateRange(2);
               toggleClass();
@@ -145,7 +145,7 @@ function StockChart({ticker}) {
             1D
           </div>
           <div
-            className={isActive ? "timeline-button active" : "timeline-button"}
+            className={`timeline-button ${dateRange === 7 ? "active" : ""}`}
             onClick={() => {
               setDateRange(7);
               toggleClass();
@@ -154,7 +154,7 @@ function StockChart({ticker}) {
             1W
           </div>
           <div
-            className={isActive ? "timeline-button active" : "timeline-button"}
+            className={`timeline-button ${dateRange === 30 ? "active" : ""}`}
             onClick={() => {
               setDateRange(30);
               toggleClass();
@@ -164,7 +164,7 @@ function StockChart({ticker}) {
           </div>
           <div
             name="3M"
-            className={isActive ? "timeline-button active" : "timeline-button"}
+            className={`timeline-button ${dateRange === 90 ? "active" : ""}`}
             // onClick={handleChange("3M")}
             onClick={() => {
               setDateRange(90);
@@ -174,7 +174,7 @@ function StockChart({ticker}) {
             3M
           </div>
           <div
-            className={isActive ? "timeline-button active" : "timeline-button"}
+            className={`timeline-button ${dateRange === 365 ? "active" : ""}`}
             onClick={() => {
               setDateRange(365);
               toggleClass();
@@ -183,7 +183,9 @@ function StockChart({ticker}) {
             1Y
           </div>
           <div
-            className={isActive ? "timeline-button active" : "timeline-button"}
+            className={`timeline-button ${
+              dateRange === 365 * 5 ? "active" : ""
+            }`}
             onClick={() => {
               setDateRange(365 * 5);
               toggleClass();

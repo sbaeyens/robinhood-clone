@@ -36,10 +36,14 @@ function StockChart({ticker}) {
     }
     async function fetchChartData() {
       const data = await fetchStockChartData(ticker, dateRange);
+
       const labels = data.results.map((result) =>
         new Date(result.t).toLocaleDateString()
       );
       const prices = data.results.map((result) => result.c);
+
+      console.log(labels)
+      console.log(prices)
       setStockChartData({
         labels,
         datasets: [
@@ -135,15 +139,7 @@ function StockChart({ticker}) {
       </div>
       <div className="timeline-container">
         <div className="timeline-buttons-container">
-          <div
-            className={`timeline-button ${dateRange === 2 ? "active" : ""}`}
-            onClick={() => {
-              setDateRange(2);
-              toggleClass();
-            }}
-          >
-            1D
-          </div>
+
           <div
             className={`timeline-button ${dateRange === 7 ? "active" : ""}`}
             onClick={() => {

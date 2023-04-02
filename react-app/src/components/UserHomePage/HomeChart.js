@@ -197,15 +197,7 @@ function HomeChart() {
       </div>
       <div className="timeline-container">
         <div className="timeline-buttons-container">
-          <div
-            className={`timeline-button ${dateRange === 2 ? "active" : ""}`}
-            onClick={() => {
-              setDateRange(2);
-              toggleClass();
-            }}
-          >
-            1D
-          </div>
+
           <div
             className={`timeline-button ${dateRange === 7 ? "active" : ""}`}
             onClick={() => {
@@ -257,7 +249,7 @@ function HomeChart() {
       </div>
       <div className="buying-power-container">
         <h2>Buying Power</h2>
-        <h2>${addCommas(Number(portfolio?.balance).toFixed(2))}</h2>
+        <h2>${portfolio.balance > -1 ? addCommas(Number(portfolio?.balance).toFixed(2)) : 0}</h2>
       </div>
     </div>
   );

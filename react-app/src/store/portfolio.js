@@ -1,5 +1,6 @@
 //ACTIONS
 const GET_USER_PORTFOLIO = 'portfolio/GET_USER_PORTFOLIO'
+export const CLEAR_PORT_STATE = "portfolio/CLEAR_PORT_STATE";
 
 
 //ACTION CREATORS
@@ -9,7 +10,11 @@ const actionGetUserPortfolio = (portfolio) => ({
     portfolio
 })
 
-
+export const clearPortfolioState = () => {
+  return {
+    type: CLEAR_PORT_STATE,
+  };
+};
 
 //THUNKS
 
@@ -49,11 +54,13 @@ const initialState = {
 export default function portfolioReducer(state = initialState, action) {
     const newState = { ...state }
     switch (action.type) {
-        case GET_USER_PORTFOLIO: {
+      case GET_USER_PORTFOLIO: {
         newState.id = action.portfolio.id;
         newState.balance = action.portfolio.balance;
         return newState;
       }
+      case CLEAR_PORT_STATE:
+        return { ...initialState };
       default:
         return state;
     }

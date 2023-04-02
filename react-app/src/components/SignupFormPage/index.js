@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { clearPortfolioState } from "../../store/portfolio";
+import { clearInvestmentState } from "../../store/investments";
 import { signUp } from "../../store/session";
 import './SignupForm.css';
 
@@ -18,6 +20,8 @@ function SignupFormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
+      dispatch(clearPortfolioState())
+      dispatch(clearInvestmentState());
         const data = await dispatch(signUp(username, email, password));
         if (data) {
           setErrors(data)

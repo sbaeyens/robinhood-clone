@@ -9,6 +9,8 @@ import { useEffect } from "react";
 import { fetchHistory, clearHistoryState } from "../../store/portfolioHistory";
 import HomeChart from "./HomeChart";
 import { fetchAllInvestments, clearInvestmentState } from "../../store/investments";
+import { Redirect } from "react-router-dom";
+
 
 
 function UserHomePage() {
@@ -30,9 +32,8 @@ function UserHomePage() {
       };
     }, [dispatch]);
 
-    if (!user) {
+      if (!user) return <Redirect to="/login" />;
 
-    }
 
     return (
         <div className="app-body">

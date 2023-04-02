@@ -18,42 +18,42 @@ function SingleWatchlist({list}) {
   let [showMenu, setShowMenu] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session?.user);
-  const watchlists = useSelector((state) => state.watchlists);
-  const investments = useSelector((state) => state.investments);
+//   const watchlists = useSelector((state) => state.watchlists);
+//   const investments = useSelector((state) => state.investments);
 
   const [investmentsData, setInvestmentsData] = useState([]);
 
   // USE STATE
   const [openDropdown, setOpenDropdown] = useState(null);
 
-  // USE EFFECTS
-  useEffect(() => {
-    if (user) {
-      dispatch(thunkGetAllWatchlistsUserId(user.id));
-    }
-  }, [dispatch, user]);
+//   // USE EFFECTS
+//   useEffect(() => {
+//     if (user) {
+//       dispatch(thunkGetAllWatchlistsUserId(user.id));
+//     }
+//   }, [dispatch, user]);
 
-  let tempStockList = ["AAPL", "GOOG", "AMZN"];
+//   let tempStockList = ["AAPL", "GOOG", "AMZN"];
 
-  let investmentsArray = [];
-  useEffect(() => {
-    console.log("INSIDE USE EFFECT");
-    console.log("investment value", investments);
-    if (investments) {
-      investmentsArray = Object.values(investments);
-      console.log("investmentsArray", investmentsArray);
-      setInvestmentsData(investmentsArray);
-    }
-  }, [investments]);
+//   let investmentsArray = [];
+//   useEffect(() => {
+//     console.log("INSIDE USE EFFECT");
+//     console.log("investment value", investments);
+//     if (investments) {
+//       investmentsArray = Object.values(investments);
+//       console.log("investmentsArray", investmentsArray);
+//       setInvestmentsData(investmentsArray);
+//     }
+//   }, [investments]);
 
   useEffect(() => {
     if (!showMenu) return;
 
-    const closeMenu = (e) => {
-      if (!dropdownRef.current.contains(e.target)) {
-        setShowMenu(false);
-      }
-    };
+    // const closeMenu = (e) => {
+    //   if (!dropdownRef.current.contains(e.target)) {
+    //     setShowMenu(false);
+    //   }
+    // };
 
     document.addEventListener("click", closeMenu);
     return () => document.removeEventListener("click", closeMenu);
@@ -61,11 +61,11 @@ function SingleWatchlist({list}) {
 
   // *FIRST RENDER
   if (!user) return null; // If no user
-  if (!watchlists) return null;
-  let watchlistArray = [];
-  if (watchlists) {
-    watchlistArray = Object.values(watchlists);
-  }
+//   if (!watchlists) return null;
+//   let watchlistArray = [];
+//   if (watchlists) {
+//     watchlistArray = Object.values(watchlists);
+//   }
 
   // Event Handlers ------------------------------------------------------------------------------------------------------------
   const openMenu = () => {
@@ -98,48 +98,10 @@ function SingleWatchlist({list}) {
     e.stopPropagation();
   };
 
+    console.log("list from listArr", list)
+
   return (
-    <div className="watchlists">
-      <div className="watchlist-container">
-        <div className="watchlist-header">
-          <p>Stocks</p>
-        </div>
-        <div className="inv-list">
-          {investmentsData.map((inv) => (
-            <NavLink
-              key={inv.stock_id}
-              to={`/stocks/${inv.stock_id}`}
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <div className="inv-card">
-                <div className="inv-tick-share">
-                  <div className="stock-ticker bold">{inv.stock_id}</div>
-                  <div>{inv.quantity} Share(s)</div>
-                </div>
-                <div className="inv-chart-pic"></div>
-                <div className="inv-price-change">
-                  <div>{Number(8).toFixed(2)}</div>
-                  <div>+0.00%</div>
-                </div>
-              </div>
-            </NavLink>
-          ))}
-          {/* <div className="watchlist-row">STCK</div>
-          <div className="watchlist-row">MKTG</div> */}
-        </div>
-        <div className="watchlist-header">
-          <p>Lists</p>
-          <div>
-            <OpenModalButton
-              buttonText={"+"}
-              modalClass={"add-list-button"}
-              modalComponent={<CreateListModal />}
-            ></OpenModalButton>
-          </div>
-        </div>
-        <div className="watchlist-content">
-          {/* <div className="watchlist-row"> */}
-          {watchlistArray.map((list) => (
+
             <div key={list.name}>
               <div className="watchlist-row">
                 <div className="watchlist-name">{list.name}</div>
@@ -165,8 +127,7 @@ function SingleWatchlist({list}) {
                           onItemClick={closeMenu}
                           modalComponent={
                             <RenameWatchlistModal
-                              id={list.id}
-                              name={list.name}
+                              list={list}
                             />
                           }
                           modalClass="watchlist-modal-btn bold"
@@ -179,9 +140,7 @@ function SingleWatchlist({list}) {
                           onItemClick={closeMenu}
                           modalComponent={
                             <DeleteWatchlistModal
-                              id={list.id}
-                              name={list.name}
-                              stocks={list.stocks}
+                              list={list}
                             />
                           }
                           modalClass="watchlist-modal-btn bold"
@@ -203,11 +162,8 @@ function SingleWatchlist({list}) {
                 );
               })}
             </div>
-          ))}
-          {/* </div> */}
-        </div>
-      </div>
-    </div>
+
+
   );
 }
 

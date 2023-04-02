@@ -13,6 +13,7 @@ import OptionsModalButton from "./WatchlistModals/OptionsModalButton";
 // import WatchlistModalButton from "./WatchlistModals/WatchlistModal";
 import RenameWatchlistModal from "./WatchlistModals/RenameWatchlistModal";
 import DeleteWatchlistModal from "./WatchlistModals/DeleteWatchlistModal";
+import SingleWatchlist from "./SingleWatchlist";
 
 
 function WatchlistWidget() {
@@ -72,6 +73,7 @@ function WatchlistWidget() {
 
   // Event Handlers ------------------------------------------------------------------------------------------------------------
   const openMenu = () => {
+
     if (showMenu) return;
     setShowMenu(true);
   };
@@ -141,70 +143,9 @@ function WatchlistWidget() {
           </div>
         </div>
         <div className="watchlist-content">
-          {/* <div className="watchlist-row"> */}
           {watchlistArray.map((list) => (
-            <div key={list.name}>
-              <div className="watchlist-row">
-                <div className="watchlist-name">{list.name}</div>
-                <div className="watchlist-buttons-container">
-                  <div className="watchlist-option-div">
-                    <div className="watchlist-button-div">
-                      <i
-                        className="fas fa-ellipsis-h watchlist-button"
-                        onClick={openMenu}
-                      />
-                    </div>
-                    <div
-                      ref={dropdownRef}
-                      className={
-                        showMenu
-                          ? `watchlist-drop-options`
-                          : `watchlist-drop-options hidden`
-                      }
-                    >
-                      <div className="watchlist-drop-div bold">
-                        <OpenModalButton
-                          buttonText="Edit list"
-                          onItemClick={closeMenu}
-                          modalComponent={
-                            <RenameWatchlistModal id={list.id} name={list.name} />
-                          }
-                          modalClass="watchlist-modal-btn bold"
-                          modalIcon={editIcon}
-                        />
-                      </div>
-                      <div className="watchlist-drop-div bold">
-                        <OpenModalButton
-                          buttonText="Delete list"
-                          onItemClick={closeMenu}
-                          modalComponent={
-                            <DeleteWatchlistModal
-                              id={list.id}
-                              name={list.name}
-                              stocks={list.stocks}
-                            />
-                          }
-                          modalClass="watchlist-modal-btn bold"
-                          modalIcon={deleteIcon}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="watchlist-button-div">
-                    <i className="fas fa-chevron-up watchlist-button" />
-                  </div>
-                </div>
-              </div>
-              {list.stocks.map((stock) => {
-                return (
-                  <div className="watchlist-row" key={stock.ticker}>
-                    <div>{stock.ticker}</div>
-                  </div>
-                );
-              })}
-            </div>
+            <SingleWatchlist list={list} />
           ))}
-          {/* </div> */}
         </div>
       </div>
     </div>

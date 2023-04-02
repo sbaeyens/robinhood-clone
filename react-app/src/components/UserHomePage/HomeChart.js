@@ -24,6 +24,7 @@ function HomeChart() {
   const [stockName, setStockName] = useState("");
   // const [activeclass, setActiveClass] = useState("")
   const [isActive, setActive] = useState(false);
+  const [portfolioTotal, setPortfolioTotal] = useState(0)
 
   // const user = useSelector((state) => state.session?.user);
     const portfolio = useSelector((state) => state.portfolio);
@@ -43,7 +44,12 @@ function HomeChart() {
       );
       // console.log("dates for portfolio hist", labels);
 
-        const prices = historyArr.map((result) => result.value_at_time);
+      const prices = historyArr.map((result) => result.value_at_time);
+
+      let mostRecentRecord = prices[(prices.length) - 1]
+      console.log("mostRecentRecord", mostRecentRecord)
+      setPortfolioTotal(mostRecentRecord)
+
         // console.log("prices for portfolio hist", prices)
             setStockChartData({
               labels,
@@ -157,7 +163,7 @@ function HomeChart() {
     <div className="chart-container">
       <div className="value-summary">
         <h1>{stockName}</h1>
-        <h1>${addCommas(Number(currentPrice).toFixed(2))}</h1>
+        <h1>${addCommas(Number(portfolioTotal).toFixed(2))}</h1>
         <p>+$55.55 (+0.05%) Today</p>
       </div>
       <div className="line-chart">

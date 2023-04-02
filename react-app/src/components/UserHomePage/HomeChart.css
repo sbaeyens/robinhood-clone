@@ -1,5 +1,5 @@
 .chart-container {
-  border: 1px dotted grey;
+  /* border: 1px dotted grey; */
   flex: 0.7;
 }
 
@@ -40,5 +40,5 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid lightgrey;
-  padding: 20px 0px 20px 0px;
+  padding: 20px 20px 20px 20px;
 }

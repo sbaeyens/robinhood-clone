@@ -174,7 +174,7 @@ function HomeChart() {
   };
 
 
-
+  console.log("portfolio", portfolio)
   // const handleChange = (e) => {
   //   console.log("e from handleChange function", e)
   // }
@@ -226,7 +226,7 @@ function HomeChart() {
           </div>
           <div
             name="3M"
-            className={`timeline-button ${dateRange === 2 ? "active" : ""}`}
+            className={`timeline-button ${dateRange === 90 ? "active" : ""}`}
             // onClick={handleChange("3M")}
             onClick={() => {
               setDateRange(90);
@@ -236,7 +236,7 @@ function HomeChart() {
             3M
           </div>
           <div
-            className={`timeline-button ${dateRange === 2 ? "active" : ""}`}
+            className={`timeline-button ${dateRange === 365 ? "active" : ""}`}
             onClick={() => {
               setDateRange(365);
               toggleClass();
@@ -245,7 +245,7 @@ function HomeChart() {
             1Y
           </div>
           <div
-            className={`timeline-button ${dateRange === 2 ? "active" : ""}`}
+            className={`timeline-button ${dateRange === 365*5 ? "active" : ""}`}
             onClick={() => {
               setDateRange(365 * 5);
               toggleClass();

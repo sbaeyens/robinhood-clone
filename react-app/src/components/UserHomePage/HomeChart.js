@@ -25,8 +25,8 @@ function HomeChart() {
   // const [activeclass, setActiveClass] = useState("")
   const [isActive, setActive] = useState(false);
   const [portfolioTotal, setPortfolioTotal] = useState(0)
-  const [portfolioGain, setPortfolioGain] = useState((3577).toFixed(2));
-  const [portfolioPercent, setPortfolioPercent] = useState(47.69);
+  const [portfolioGain, setPortfolioGain] = useState((0).toFixed(2));
+  const [portfolioPercent, setPortfolioPercent] = useState(0);
   const [rangeText, setRangeText] = useState("All Time")
 
   // const user = useSelector((state) => state.session?.user);
@@ -103,6 +103,7 @@ function HomeChart() {
     setPortfolioGain(gain)
     let percentGain = (gain / prices[0]*100).toFixed(2)
     setPortfolioPercent(percentGain)
+    if (historyArr.length === 1) setPortfolioPercent(0)
 
     if (dateRange === 2) {
       setRangeText("Past Day");
@@ -138,7 +139,7 @@ function HomeChart() {
         },
       ],
     });
-  }, [dateRange]);
+  }, [dateRange, portfolioTotal]);
 
   useEffect(() => {
     dispatch(getUserPortfolio());

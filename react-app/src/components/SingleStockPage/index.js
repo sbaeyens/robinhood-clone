@@ -11,6 +11,8 @@ import { fetchStockDetails } from "../../Utils";
 import Transactions from "./Transactions";
 import { getUserPortfolio } from "../../store/portfolio";
 import { Redirect } from "react-router-dom";
+import AddToWatchlistModal from "../WatchlistWidget/AddToWatchlistModal";
+import OpenModalButton from "../OpenModalButton";
 
 // const API_KEY = process.env.REACT_APP_POLYGON_API_KEY;
 // const BASE_URL = "https://api.polygon.io/v2/";
@@ -60,6 +62,8 @@ function SingleStockPage() {
       dispatch(getUserPortfolio());
     }, [dispatch]);
 
+  let plusIcon = <i className="fas fa-plus single-stock-add-watch-plus" />;
+
     if (!user) return <Redirect to="/login" />;
 
   return (
@@ -70,7 +74,20 @@ function SingleStockPage() {
           <Transactions ticker={ticker} />
         </div>
         <div className="app-right">
-          <BuySellWidget ticker={ticker} stockData={stockData} currentPrice={currentPrice} portfolio={portfolio} />
+          <BuySellWidget
+            ticker={ticker}
+            stockData={stockData}
+            currentPrice={currentPrice}
+            portfolio={portfolio}
+          />
+          <div className="add-to-watch-div">
+            <OpenModalButton
+              buttonText="Add to Lists"
+              modalClass="add-list-modal-btn bold"
+              modalIcon={plusIcon}
+              modalComponent={<AddToWatchlistModal ticker={ticker} />}
+            />
+          </div>
         </div>
       </div>
       <div></div>

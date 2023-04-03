@@ -49,6 +49,7 @@ export const thunkGetAllWatchlistsUserId = () => async (dispatch) => {
   }
 }
 
+// -----create new watchlist
 export const createList = (watchlist) => async (dispatch) => {
   const response = await fetch("/api/watchlists/", {
     method: "POST",
@@ -91,6 +92,23 @@ export const editWatchlist = (watchlist) => async (dispatch) => {
   }
 };
 
+// -----add new stock to watchlist
+export const addStockToList = (stocksArr) => async (dispatch) => {
+  console.log("REACHED THUNK - array value", stocksArr)
+  const response = await fetch("/api/watchlists_stocks/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(stocksArr),
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    // dispatch(thunkGetAllWatchlistsUserId());
+    return data;
+  }
+};
 
 
 const initialState = {};

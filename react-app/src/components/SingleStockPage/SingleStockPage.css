@@ -25,3 +25,23 @@
   flex-direction: column;
   width: 40%;
 }
+
+.add-to-watch-div {
+  display: flex;
+  justify-content: center;
+}
+
+.add-list-modal-btn {
+  border: 1px solid green;
+  background-color: white;
+  color: green;
+  cursor: pointer;
+  width: 290px;
+  height: 50px;
+  margin-top: 20px;
+  border-radius: 30px;
+}
+
+.add-list-modal-btn:hover {
+  background-color: #00c8071d;
+}

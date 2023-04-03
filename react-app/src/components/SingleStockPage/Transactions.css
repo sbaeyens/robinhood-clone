@@ -2,5 +2,29 @@
 }
 
 .transaction-card {
-  border: 1px solid grey;
+  display: flex;
+  /* border: 1px solid grey; */
+  padding: 20px;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+}
+
+.transaction-summary {
+  /* justify-content: right; */
+  /* display: flex;
+  flex-direction: column; */
+  /* align-items: flex-end; */
+  text-align: right;
+}
+
+.transaction-top-text {
+  font-weight: 700;
+  margin-bottom: 10px;
+  /* font-size: 14px; */
+}
+
+.transaction-bottom-text {
+  font-weight: 300;
+  font-size: 12px;
 }

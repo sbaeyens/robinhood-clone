@@ -26,6 +26,10 @@ function SignupFormModal() {
       dispatch(clearHistoryState());
       dispatch(clearTransactionState());
       dispatch(clearWatchlistsState());
+      if (email.includes("@") === false) {
+        setErrors(["Must be a valid email address"]);
+        return;
+      }
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data);

@@ -244,68 +244,73 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
   }
 
   return (
-    <div className="buy-sell-widget">
-      <div className="buy-sell-widget-container">
-        <div className="buy-sell-button-div">
-          <div
-            onClick={onClickTypeHandler}
-            className={
-              type === "Buy" ? "transaction-btn selected" : "transaction-btn"
-            }
-          >
-            Buy
-          </div>
+    <>
+      <div className="buy-sell-widget">
+        <div className="buy-sell-widget-container">
+          <div className="buy-sell-button-div">
+            <div
+              onClick={onClickTypeHandler}
+              className={
+                type === "Buy" ? "transaction-btn selected" : "transaction-btn"
+              }
+            >
+              Buy
+            </div>
 
-          <div
-            onClick={onClickTypeHandler}
-            className={
-              type === "Sell" ? "transaction-btn selected" : "transaction-btn"
-            }
-          >
-            Sell
+            <div
+              onClick={onClickTypeHandler}
+              className={
+                type === "Sell" ? "transaction-btn selected" : "transaction-btn"
+              }
+            >
+              Sell
+            </div>
           </div>
-        </div>
-        <div className="order-type">
-          <div className="order-type-left">
-            <p> Order Type</p>
+          <div className="order-type">
+            <div className="order-type-left">
+              <p> Order Type</p>
+            </div>
+            <div className="buy-order">
+              <p> Buy Market Order</p>
+            </div>
           </div>
-          <div className="buy-order">
-            <p> Buy Market Order</p>
-          </div>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <div className="share-quantity">
-            <p>Shares</p>
+          <form onSubmit={handleSubmit}>
+            <div className="share-quantity">
+              <p>Shares</p>
 
-            <input
-              type="number"
-              min="0"
-              value={quantity}
-              onChange={(e) => setQuantity(e.target.value)}
-            />
-          </div>
-          <div className="current-price">
-            <p>Market Price</p>
-            <p>${addCommas(Number(currentPrice).toFixed(2))}</p>
-          </div>
-          <div className="estimated-cost">
-            <p>Estimated Cost</p>
-            <p>${addCommas(Number(totalPrice).toFixed(2))}</p>
-          </div>
-          <div>{confirmBtn}</div>
-          <div className="available-funds">
-            {type === "Buy" && user
-              ? `$${addCommas(
-                  Number(portfolio?.balance).toFixed(2)
-                )} buying power available`
-              : ""}
-            {type === "Sell" && user
-              ? `${investments ? currentShares : 0} Share(s) available`
-              : ""}
-          </div>
-        </form>
+              <input
+                type="number"
+                min="0"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+              />
+            </div>
+            <div className="current-price">
+              <p>Market Price</p>
+              <p>${addCommas(Number(currentPrice).toFixed(2))}</p>
+            </div>
+            <div className="estimated-cost">
+              <p>Estimated Cost</p>
+              <p>${addCommas(Number(totalPrice).toFixed(2))}</p>
+            </div>
+            <div>{confirmBtn}</div>
+            <div className="available-funds">
+              {type === "Buy" && user
+                ? `$${addCommas(
+                    Number(portfolio?.balance).toFixed(2)
+                  )} buying power available`
+                : ""}
+              {type === "Sell" && user
+                ? `${investments ? currentShares : 0} Share(s) available`
+                : ""}
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+      <div className="add-to-wishlist">
+
+      </div>
+    </>
   );
 }
 

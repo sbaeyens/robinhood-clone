@@ -3,6 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, NavLink } from "react-router-dom";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
+import { clearHistoryState } from "../../store/portfolioHistory";
+import { clearInvestmentState } from "../../store/investments";
+import { clearPortfolioState } from "../../store/portfolio";
+import { clearTransactionState } from "../../store/transactions";
+import { clearWatchlistsState } from "../../store/watchlists";
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -17,6 +22,11 @@ function SignupFormPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(clearPortfolioState());
+    dispatch(clearInvestmentState());
+    dispatch(clearHistoryState())
+    dispatch(clearTransactionState())
+    dispatch(clearWatchlistsState())
     if (password === confirmPassword) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {

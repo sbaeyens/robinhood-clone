@@ -123,7 +123,7 @@ function WatchlistWidget() {
                 </div>
                 <div className="inv-chart-pic"></div>
                 <div className="inv-price-change">
-                  <div>{Number(8).toFixed(2)}</div>
+                  <div>${Number(0).toFixed(2)}</div>
                   <div>+0.00%</div>
                 </div>
               </div>

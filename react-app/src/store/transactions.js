@@ -1,6 +1,7 @@
 //ACTIONS
 export const GET_ALL_TRANSACTIONS = "transactions/GET_ALL_TRANSACTIONS";
 export const CREATE_TRANSACTIONS = "Investments/CREATE_TRANSACTIONS";
+export const CLEAR_TRANS_STATE = "Investments/CLEAR_TRANS_STATE";
 
 
 //ACTION CREATORS
@@ -11,7 +12,11 @@ export const getAllTransactions = (payload) => {
   };
 };
 
-
+export const clearTransactionState = () => {
+  return {
+    type: CLEAR_TRANS_STATE,
+  };
+};
 
 
 //THUNKS
@@ -55,6 +60,8 @@ export default function transactionReducer(state = initialState, action) {
       });
       newState.transactions = { ...transactions };
       return newState;
+    case CLEAR_TRANS_STATE:
+      return { ...initialState };
     default:
       return state;
   }

@@ -32,7 +32,7 @@ function SingleStockPage() {
       useEffect(() => {
         async function runFetchStockDetails() {
           const data = await fetchStockDetails(ticker.toUpperCase());
-          let openPrice = data.ticker.day.o;
+          let openPrice = data.ticker.prevDay.c;
           let change = data.ticker.todaysChange;
           let currentPrice = openPrice + change;
 
@@ -48,9 +48,17 @@ function SingleStockPage() {
       }
       async function runFetchStockDetails() {
         const data = await fetchStockDetails(ticker);
-        let openPrice = data.ticker.day.o;
+        let openPrice = data.ticker.prevDay.c;
+
         let change = data.ticker.todaysChange;
         let currentPrice = openPrice + change;
+
+        console.log("prices from useEffect", openPrice, change, currentPrice)
+                console.log(
+                  "data from useEffect",
+                  data
+                );
+
 
         setCurrentPrice(currentPrice);
         setStockName(data.ticker.ticker);

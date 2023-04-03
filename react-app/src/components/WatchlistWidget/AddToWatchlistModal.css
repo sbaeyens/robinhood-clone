@@ -78,12 +78,17 @@
   height: 45px;
   border-radius: 20px;
   color: white;
-  background-color: var(--rhood-green);
+  background-color: green;
   cursor: pointer;
 }
 
 .watchlist-save-changes:hover {
   filter: grayscale(20%);
+}
+
+.watchlist-save-changes:disabled {
+  /* filter: grayscale(20%); */
+  cursor: not-allowed;
 }
 
 .watch-modal-card-div {

@@ -24,6 +24,9 @@ function StockChart({ticker}) {
   const [stockName, setStockName] = useState("");
   // const [activeclass, setActiveClass] = useState("")
   const [isActive, setActive] = useState(false);
+    const [portfolioGain, setPortfolioGain] = useState((0).toFixed(2));
+    const [portfolioPercent, setPortfolioPercent] = useState(0);
+    const [rangeText, setRangeText] = useState("All Time");
 
 
   // const user = useSelector((state) => state.session?.user);
@@ -41,6 +44,34 @@ function StockChart({ticker}) {
         new Date(result.t).toLocaleDateString()
       );
       const prices = data.results.map((result) => result.c);
+
+      if (dateRange === 2) {
+        setRangeText("Past Day");
+      } else if (dateRange === 7) {
+        setRangeText("Past Week");
+      } else if (dateRange === 30) {
+        setRangeText("Past Month");
+      } else if (dateRange === 90) {
+        setRangeText("Past 3 Months");
+      } else if (dateRange === 365) {
+        setRangeText("Past Year");
+      } else {
+        setRangeText("All Time");
+      }
+
+      // labels = labels.slice(-1 * dateRange);
+      // prices = prices.slice(-1 * dateRange);
+
+      // console.log("dates for portfolio hist", labels);
+
+      let mostRecentRecord = prices[prices.length - 1];
+      console.log("mostRecentRecord", mostRecentRecord);
+      // setPortfolioTotal(mostRecentRecord);
+      let gain = (prices[prices.length - 1] - prices[0]).toFixed(2);
+      setPortfolioGain(gain);
+      let percentGain = ((gain / prices[0]) * 100).toFixed(2);
+      setPortfolioPercent(percentGain);
+
 
       console.log(labels)
       console.log(prices)
@@ -71,9 +102,23 @@ function StockChart({ticker}) {
     if (!ticker) {
       return;
     }
+    if (dateRange === 2) {
+      setRangeText("Past Day");
+    } else if (dateRange === 7) {
+      setRangeText("Past Week");
+    } else if (dateRange === 30) {
+      setRangeText("Past Month");
+    } else if (dateRange === 90) {
+      setRangeText("Past 3 Months");
+    } else if (dateRange === 365) {
+      setRangeText("Past Year");
+    } else {
+      setRangeText("All Time");
+    }
+
     async function runFetchStockDetails() {
       const data = await fetchStockDetails(ticker);
-      let openPrice = data.ticker.day.o;
+      let openPrice = data.ticker.prevDay.c;
       let change = data.ticker.todaysChange;
       let currentPrice = openPrice + change;
 
@@ -132,14 +177,15 @@ function StockChart({ticker}) {
       <div className="value-summary">
         <h1>{stockName}</h1>
         <h1>${addCommas(Number(currentPrice).toFixed(2))}</h1>
-        <p>+$55.55 (+0.05%) Today</p>
+        <p>
+          +${portfolioGain} (+{portfolioPercent}%) {rangeText}
+        </p>
       </div>
       <div className="line-chart">
         {stockChartData && <Line data={stockChartData} options={options} />}
       </div>
       <div className="timeline-container">
         <div className="timeline-buttons-container">
-
           <div
             className={`timeline-button ${dateRange === 7 ? "active" : ""}`}
             onClick={() => {

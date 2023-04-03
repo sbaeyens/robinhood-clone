@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkGetAllWatchlistsUserId } from "../../store/watchlists";
 import "./AddToWatchlistModal.css";
+import { addStockToList } from "../../store/watchlists";
 
 
 
@@ -97,7 +98,8 @@ function AddToWatchlistModal({ ticker }) {
 
     const boxOnChangeHandler = (e) => {
       updateObj[e.target.name] = !updateObj[e.target.name];
-      setUpdateObj({ ...updateObj });
+        setUpdateObj({ ...updateObj });
+        console.log("updateObj", updateObj)
     };
 
     const saveChanges = async (e) => {
@@ -120,7 +122,7 @@ function AddToWatchlistModal({ ticker }) {
         }
       }
 
-    //   let added = await dispatch(addStockToList(addArray));
+      let added = await dispatch(addStockToList(addArray));
     //   let deleted = await dispatch(removeStockFromList(deleteArray));
 
       closeModal();

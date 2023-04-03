@@ -13,6 +13,8 @@ import { addCommas } from "../../Utils";
 function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
   const dispatch = useDispatch();
   const investments = useSelector((state) => state.investments);
+  const user = useSelector((state) => state.session?.user);
+
 
   const [quantity, setQuantity] = useState(1);
   const [type, setType] = useState("Buy");
@@ -122,7 +124,7 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
       errorObj.type = "Not Enough Shares";
       errorObj.message = `You can sell at most ${currentShares} share(s) of ${ticker}`;
     }
-    if (type === "Buy" && quantity > portfolio.balance) {
+    if (type === "Buy" && totalPrice > portfolio.balance) {
       errorObj.type = "Not Enough Buying Power";
       errorObj.message =
         "You don't have enough buying power in your brokerage account to place this order.";
@@ -201,7 +203,7 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
         <div className="review-button-div">
           {
             <button
-              className="review-button bold"
+              className="dismiss-button bold"
               type="button"
               onClick={onClickDismissHandler}
             >
@@ -264,8 +266,12 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
           </div>
         </div>
         <div className="order-type">
-          <p> Order Type</p>
-          <p> Buy Market Order</p>
+          <div className="order-type-left">
+            <p> Order Type</p>
+          </div>
+          <div className="buy-order">
+            <p> Buy Market Order</p>
+          </div>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="share-quantity">
@@ -287,12 +293,15 @@ function BuySellWidget({ ticker, stockData, currentPrice, portfolio}) {
             <p>${addCommas(Number(totalPrice).toFixed(2))}</p>
           </div>
           <div>{confirmBtn}</div>
-          <div>
-            {type === "Buy"
+          <div className="available-funds">
+            {type === "Buy" && user
               ? `$${addCommas(
                   Number(portfolio?.balance).toFixed(2)
                 )} buying power available`
-              : `${investments ? currentShares : 0} Share(s) available`}
+              : ""}
+            {type === "Sell" && user
+              ? `${investments ? currentShares : 0} Share(s) available`
+              : ""}
           </div>
         </form>
       </div>

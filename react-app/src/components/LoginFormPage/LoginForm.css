@@ -1,61 +1,65 @@
-.login-form-container {
+.login-page-container {
   display: flex;
-  justify-content: center;
-  border-radius: 10px;
-  padding: 20px;
+}
 
-  /* uncommented the width/height due to the state of the login modal changing and overflowing the container. removing hard-set width/height allows container to be flexible in every state instead  */
-  /* height: 300px; */
-  /* width: 300px; */
+.login-form-img {
+  min-width: 900px;
+  min-height: 1300px;
+  max-height: 1300px;
+  width: 50vw;
+  height: 100vh;
+}
+
+.login-form-container {
+  background-color: white;
+  position: absolute;
+  width: 50vw;
+  height: 100vh;
+  min-height: 1300px;
+  right: 0px;
+  z-index: 1;
 }
 
 .login-form-div {
-  /* uncommented height value due to overflow, this way the height is flexible to the content instead */
-
-  /* height: 300px; */
-  width: 270px;
+  padding: 70px 50px;
 }
 
-.login-form-form {
-  display: flex;
-  flex-direction: column;
+.login-label-text {
+  padding: 10px 0px;
 }
 
-.login-form-header {
-  font-size: 30px;
-  font-weight: bold;
-  margin-top: 15px;
-}
-
-.login-form-section-div {
-  margin: 8px 0px;
-}
-
-.login-form-input {
-  width: 260px;
-  height: 20px;
-  border-radius: 5px;
+.login-input {
+  width: 70%;
+  height: 30px;
   border: 1px solid lightgray;
+  border-radius: 5px;
 }
 
-.login-form-buttons-login {
-  width: 266px;
-  height: 30px;
-  border-radius: 15px;
-  background-color: rgb(46, 46, 46);
+.login-pass-div {
+  margin: 20px 0px 10px 0px;
+}
+
+.login-form-button {
+  width: 200px;
+  height: 45px;
   color: white;
+  background-color: black;
+  border-radius: 30px;
+  margin: 20px 0px 10px 0px;
+  cursor: pointer;
 }
 
-.login-form-buttons-login:hover {
-  font-weight: bold;
+.login-form-button:hover {
+  background-color: rgba(0, 0, 0, 0.849);
 }
 
-.login-form-buttons-demo {
-  width: 266px;
+.login-line-split {
+  width: 100%;
   height: 30px;
-  border-radius: 15px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid lightgray;
 }
 
-.login-form-buttons-demo:hover {
-  font-weight: bold;
+.signup-link-div {
+  padding-top: 20px;
 }

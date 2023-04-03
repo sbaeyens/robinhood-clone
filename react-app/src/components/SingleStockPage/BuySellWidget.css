@@ -25,26 +25,36 @@
 
 .order-type {
   display: flex;
+  font-weight: 600;
   justify-content: space-between;
-  margin: 10px 0px 10px 0px;
+  margin: 15px;
+  /* padding: 100px; */
+  /* border: 1px solid blue; */
+  width: 95%;
 }
 
 .share-quantity {
   display: flex;
   justify-content: space-between;
   margin: 10px 0px 10px 0px;
+  width: 100%;
+  align-items: center;
+  /* border: 1px solid blue; */
 }
 
 .current-price {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0px 10px 0px;
+  padding: 20px 0px 20px 0px;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+  /* border: 1px solid blue; */
 }
 
 .estimated-cost {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0px 10px 0px;
+  padding: 20px 0px 20px 0px;
 }
 
 .button-container {
@@ -93,6 +103,12 @@
 .selected {
   border-bottom: 3px solid green;
   color: green;
+}
+
+.available-funds {
+  display: flex;
+  color: green;
+  justify-content: center;
 }
 
 /* buttons and confirmation */
@@ -196,6 +212,19 @@
   border: 2px solid gray;
   box-shadow: 1px 1px 3px gray;
   border-color: gray;
+  border-radius: 25px;
+  color: white;
+  height: 50px;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+
+.dismiss-button {
+  background-color: lightcoral;
+  width: 100%;
+  border: 2px solid lightcoral;
+  box-shadow: 1px 1px 3px gray;
+  border-color: lightcoral;
   border-radius: 25px;
   color: white;
   height: 50px;

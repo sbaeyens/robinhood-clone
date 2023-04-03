@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
+import { clearInvestmentState } from "../../store/investments";
+import { clearPortfolioState } from "../../store/portfolio";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
@@ -16,6 +18,8 @@ function SignupFormModal() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
+      dispatch(clearPortfolioState());
+      dispatch(clearInvestmentState());
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data);

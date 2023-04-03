@@ -9,6 +9,7 @@ import UserHomePage from "./components/UserHomePage/Index";
 import SingleStockPage from "./components/SingleStockPage";
 
 function App() {
+
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {

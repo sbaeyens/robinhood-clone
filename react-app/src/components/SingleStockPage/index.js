@@ -10,6 +10,7 @@ import BuySellWidget from "./BuySellWidget"
 import { fetchStockDetails } from "../../Utils";
 import Transactions from "./Transactions";
 import { getUserPortfolio } from "../../store/portfolio";
+import { Redirect } from "react-router-dom";
 
 // const API_KEY = process.env.REACT_APP_POLYGON_API_KEY;
 // const BASE_URL = "https://api.polygon.io/v2/";
@@ -20,6 +21,8 @@ function SingleStockPage() {
   const [stockData, setStockData] = useState({});
   const [currentPrice, setCurrentPrice] = useState(0);
   const [stockName, setStockName] = useState("");
+  const user = useSelector((state) => state.session?.user);
+
 
   console.log("FIRING FROM SINGLE STOCK PAGE")
     let { ticker } = useParams();
@@ -57,6 +60,7 @@ function SingleStockPage() {
       dispatch(getUserPortfolio());
     }, [dispatch]);
 
+    if (!user) return <Redirect to="/login" />;
 
   return (
     <div className="app-body-single">

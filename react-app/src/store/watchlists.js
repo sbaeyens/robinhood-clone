@@ -5,6 +5,8 @@ const GET_WATCHLISTS_USER_ID = 'watchlists/user/all'
 const CREATE_WATCHLIST = 'watchlists/create'
 const DELETE_WATCHLIST_BY_ID = "watchlists/delete";
 const EDIT_WATCHLIST = 'watchlists/update'
+export const CLEAR_WATCH_STATE = "watchlists/CLEAR_WATCH_STATE";
+
 
 
 // ACTION CREATORS
@@ -27,6 +29,12 @@ const actionEditWatchlist = (watchlist) => ({
   type: EDIT_WATCHLIST,
   watchlist,
 });
+
+export const clearWatchlistsState = () => {
+  return {
+    type: CLEAR_WATCH_STATE,
+  };
+};
 
 // THUNKS
 export const thunkGetAllWatchlistsUserId = () => async (dispatch) => {
@@ -113,6 +121,8 @@ export default function watchlistReducer(state = initialState, action) {
       newState[action.watchlist.id] = action.watchlist;
       return newState;
     }
+    case CLEAR_WATCH_STATE:
+      return { ...initialState };
     default:
       return state;
   }

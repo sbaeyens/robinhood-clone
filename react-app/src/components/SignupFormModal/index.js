@@ -3,8 +3,11 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
 import "./SignupForm.css";
+import { clearHistoryState } from "../../store/portfolioHistory";
 import { clearInvestmentState } from "../../store/investments";
 import { clearPortfolioState } from "../../store/portfolio";
+import { clearTransactionState } from "../../store/transactions";
+import { clearWatchlistsState } from "../../store/watchlists";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
@@ -20,6 +23,9 @@ function SignupFormModal() {
     if (password === confirmPassword) {
       dispatch(clearPortfolioState());
       dispatch(clearInvestmentState());
+      dispatch(clearHistoryState());
+      dispatch(clearTransactionState());
+      dispatch(clearWatchlistsState());
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data);

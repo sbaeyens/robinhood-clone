@@ -31,7 +31,7 @@ function LoginFormPage() {
     <div className="login-page-container">
       <img
         className="login-form-img"
-        src="./images/signin-background.PNG"
+        src="./images/signin-background.png"
         alt="login"
       />
       <div className="login-form-container">

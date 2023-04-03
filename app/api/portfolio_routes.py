@@ -27,3 +27,19 @@ def update_portfolio():
         db.session.commit()
 
     return portfolio.to_dict()
+
+# creates starter portfolio
+@portfolio_routes.route('/', methods=["POST"])
+def create_portfolio():
+    '''
+    Creates portfolio on sign up
+    '''
+    res = request.get_json()
+
+    new_portfolio = Portfolio(
+        owner_id=res["userId"],
+        balance=10000
+    )
+    db.session.add(new_portfolio)
+    db.session.commit()
+    return new_portfolio.to_dict()

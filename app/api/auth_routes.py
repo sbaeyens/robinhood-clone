@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, db, Portfolio, Portfolio_History
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from datetime import datetime
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -69,6 +70,24 @@ def sign_up():
         )
         db.session.add(user)
         db.session.commit()
+
+        # create portfolio on signup
+        portfolio = Portfolio(
+            owner_id=user.to_dict()["id"],
+            balance=10000
+        )
+        db.session.add(portfolio)
+        db.session.commit()
+
+        # create history snapshot on signup
+        portfolio_history = Portfolio_History(
+            portfolio_id = portfolio.to_dict()["id"],
+            value_at_time = 0,
+            date=datetime.now()
+        )
+        db.session.add(portfolio_history)
+        db.session.commit()
+
         login_user(user)
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401

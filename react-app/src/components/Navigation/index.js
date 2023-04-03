@@ -15,6 +15,10 @@ function Navigation({ isLoaded }){
   const history = useHistory();
   const [value, setValue] = useState("");
 
+  if (!sessionUser) {
+    return <></>
+  }
+
   	const onChangeHandler = (e) => {
       setValue(e.target.value);
     };

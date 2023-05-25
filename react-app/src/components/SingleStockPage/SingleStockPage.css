@@ -26,7 +26,7 @@
 .app-right {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 400px;
 }
 
 .add-to-watch-div {

@@ -7,11 +7,14 @@
 
 .app-container {
   display: flex;
-  width: 1024px;
+  justify-content: center;
+  max-width: 1304px;
+  min-width: 700px;
   height: 100%;
   padding-left: 48px;
   padding-right: 48px;
   padding-top: 20px;
+  width: 90%;
 }
 
 /* .home-left-body {

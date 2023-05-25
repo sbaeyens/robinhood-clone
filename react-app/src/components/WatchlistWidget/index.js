@@ -106,7 +106,7 @@ function WatchlistWidget() {
   return (
     <div className="watchlists">
       <div className="watchlist-container">
-        <div className="watchlist-header">
+        <div className="stocks-header">
           <p>Stocks</p>
         </div>
         <div className="inv-list">

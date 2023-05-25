@@ -1,5 +1,7 @@
 .watchlists {
-  flex: 0.3;
+  /* flex: 0.3; */
+  min-width: 330px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   padding: 0px 30px 30px 30px;
@@ -9,7 +11,18 @@
   flex-direction: column;
   flex: 1;
   border-radius: 5px;
-  border: 1px solid lightgray;
+  border: 1px solid rgb(232, 232, 232);
+}
+
+.stocks-header {
+  display: flex;
+  font-size: 16px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgray;
+  /* border-top: 1px solid lightgray; */
+  padding: 20px 20px 20px 20px;
+  font-weight: 800;
 }
 
 .watchlist-header {
@@ -17,7 +30,7 @@
   font-size: 16px;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid lightgray;
+  /* border-bottom: 1px solid lightgray; */
   border-top: 1px solid lightgray;
   padding: 20px 20px 10px 20px;
   font-weight: 800;
@@ -33,7 +46,7 @@
   height: 60px;
   padding: 0 24px;
   align-items: center;
-  border: 1px solid lightgrey;
+  border-top: 1px solid lightgrey;
 }
 
 .watchlist-name {
@@ -57,7 +70,7 @@
 }
 
 .list-name-box {
-  border: 1px solid green;
+  border: 1px solid var(--rhgreen);
 }
 
 .watchlist-header-listname {
@@ -79,7 +92,8 @@
 }
 
 .add-list-button:hover {
-  background-color: lightgrey;
+  background-color: var(--hovergray);
+  cursor: pointer;
 }
 
 .watchlist-buttons-container {
@@ -93,13 +107,21 @@
 /* Investment Card ---------------------------------------- */
 
 .inv-list {
-  padding: 10px 20px 10px 20px;
+  /* padding: 10px 20px 10px 20px; */
 }
 
 .inv-card {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 15px;
+  padding: 10px 20px;
+}
+
+.inv-card:hover {
+  display: flex;
+  justify-content: space-between;
+  /* padding-bottom: 15px; */
+  background-color: #f6f6f6;
+  border: none;
 }
 
 /* Dropdown styling options ---------------------------------------- */

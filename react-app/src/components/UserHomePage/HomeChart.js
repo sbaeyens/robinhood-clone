@@ -126,7 +126,7 @@ function HomeChart() {
         {
           data: prices,
           backgroundColor: "none",
-          borderColor: "#5AC53B",
+          borderColor: "#00C805",
           borderWidth: 2,
           pointBorderColor: "rgba(0, 0, 0, 0)",
           pointBackgroundColor: "rgba(0, 0, 0, 0)",
@@ -154,6 +154,7 @@ function HomeChart() {
         grid: {
           display: false,
           drawOnChartArea: false,
+          drawBorder: false,
         },
         ticks: {
           display: false,
@@ -163,6 +164,7 @@ function HomeChart() {
         grid: {
           display: false,
           drawOnChartArea: false,
+          drawBorder: false,
         },
         ticks: {
           display: false,

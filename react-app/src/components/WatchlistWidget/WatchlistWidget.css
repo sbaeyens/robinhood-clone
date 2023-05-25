@@ -1,5 +1,7 @@
 .watchlists {
-  flex: 0.3;
+  /* flex: 0.3; */
+  min-width: 250px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   padding: 0px 30px 30px 30px;
@@ -57,7 +59,7 @@
 }
 
 .list-name-box {
-  border: 1px solid green;
+  border: 1px solid var(--rhgreen);
 }
 
 .watchlist-header-listname {

@@ -97,17 +97,17 @@
 }
 
 .transaction-btn:hover {
-  color: green;
+  color: var(--rhgreen);
 }
 
 .selected {
-  border-bottom: 3px solid green;
-  color: green;
+  border-bottom: 3px solid var(--rhgreen);
+  color: var(--rhgreen);
 }
 
 .available-funds {
   display: flex;
-  color: green;
+  color: var(--rhgreen);
   justify-content: center;
 }
 
@@ -124,8 +124,8 @@
 }
 
 /* .selected {
-  border-bottom: 3px solid green;
-  color: green;
+  border-bottom: 3px solid var(--rhgreen);
+  color: var(--rhgreen);
 } */
 
 .info-icon {
@@ -207,16 +207,17 @@
 }
 
 .review-button {
-  background-color: green;
+  background-color: var(--rhgreen);
   width: 100%;
-  border: 2px solid gray;
-  box-shadow: 1px 1px 3px gray;
-  border-color: gray;
+  /* border: 2px solid gray; */
+  /* box-shadow: 1px 1px 3px gray; */
+  /* border-color: gray; */
   border-radius: 25px;
   color: white;
   height: 50px;
   margin-bottom: 25px;
   cursor: pointer;
+  border: none;
 }
 
 .dismiss-button {
@@ -238,8 +239,8 @@
 
 .edit-button {
   background-color: white;
-  border-color: green;
-  color: green;
+  border-color: var(--rhgreen);
+  color: var(--rhgreen);
 }
 
 .review-button:hover {

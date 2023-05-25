@@ -10,3 +10,7 @@ p {
   /* padding: 0px;
   margin: 0px; */
 }
+
+:root {
+  --rhgreen: #00c805;
+}

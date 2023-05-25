@@ -7,11 +7,14 @@
 
 .app-container-single {
   display: flex;
-  width: 1024px;
+  justify-content: center;
+  max-width: 1304px;
+  min-width: 700px;
   height: 100%;
   padding-left: 48px;
   padding-right: 48px;
   padding-top: 20px;
+  width: 90%;
 }
 
 .app-left {
@@ -32,9 +35,9 @@
 }
 
 .add-list-modal-btn {
-  border: 1px solid green;
+  border: 1px solid var(--rhgreen);
   background-color: white;
-  color: green;
+  color: var(--rhgreen);
   cursor: pointer;
   width: 290px;
   height: 50px;

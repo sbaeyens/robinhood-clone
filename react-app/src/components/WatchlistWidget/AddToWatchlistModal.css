@@ -78,7 +78,7 @@
   height: 45px;
   border-radius: 20px;
   color: white;
-  background-color: green;
+  background-color: var(--rhgreen);
   cursor: pointer;
 }
 

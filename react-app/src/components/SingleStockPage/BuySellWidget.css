@@ -11,12 +11,12 @@
   flex-direction: column;
   flex: 1;
   border-radius: 5px;
-  border: 1px solid lightgray;
+  border: 1px solid var(--bordergray);
   padding: 15px;
   width: 345;
   /* max-width: 370; */
   /* border: 1px solid lightgray; */
-  box-shadow: 2px 2px 10px lightgray;
+  box-shadow: 2px 4px 50px rgb(228, 228, 228);
   /* border-radius: 5px; */
   display: flex;
   /* flex-direction: column; */
@@ -79,12 +79,6 @@
   background-color: aquamarine;
 }
 
-.buy-sell-widget-container {
-  /* background-color: lightgrey; */
-
-  /* padding: 10px 0px; */
-}
-
 .buy-sell-btn-div {
   display: flex;
   width: 100%;
@@ -114,6 +108,9 @@
   display: flex;
   color: var(--rhgreen);
   justify-content: center;
+  border-top: 1px solid var(--bordergray);
+  padding-top: 20px;
+  padding-bottom: 10px;
 }
 
 /* buttons and confirmation */
@@ -244,8 +241,12 @@
 
 .edit-button {
   background-color: white;
-  border-color: var(--rhgreen);
+  border: 1px solid var(--rhgreen);
   color: var(--rhgreen);
+}
+
+.edit-button:hover {
+  background-color: #00c8071d;
 }
 
 .review-button:hover {
@@ -253,12 +254,25 @@
 }
 
 .share-quantity input {
-  border-top: 1px solid gray;
-  background-color: rgba(211, 211, 211, 0.566);
+  /* border-top: 1px solid gray; */
+  background-color: white;
   padding: 0px 15px;
   width: 50%;
   height: 45px;
   font-size: 18px;
   border-radius: 5px;
   text-align: right;
+  border: 1px solid var(--bordergray);
+}
+
+.share-quantity input::-webkit-outer-spin-button,
+.share-quantity input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.share-quantity input:focus {
+  outline: none !important;
+  border: 1px solid var(--rhgreen);
+  /* box-shadow: 0 0 10px #719ece; */
 }

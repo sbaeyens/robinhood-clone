@@ -219,3 +219,15 @@
   margin-right: 5px;
   font-size: 16px;
 }
+
+.fa-chevron-up:hover {
+  color: var(--rhgreen);
+}
+
+.fa-chevron-down:hover {
+  color: var(--rhgreen);
+}
+
+.fa-ellipsis-h:hover {
+  color: var(--rhgreen);
+}

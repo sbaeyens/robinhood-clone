@@ -1,15 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Transfers.css";
+import { useDispatch, useSelector } from "react-redux";
 import DropdownSelect from "./DropdownSelect";
+import { getUserPortfolio } from "../../store/portfolio";
 
 function Transfers() {
-const [transferType, setTransferType] = useState("Deposit")
+const dispatch = useDispatch();
+const portfolio = useSelector((state) => state.portfolio);
+const [type, setType] = useState("Deposit")
 const [amount, setAmount] = useState("10000");
 const [btnState, setBtnState] = useState(true);
+
+    useEffect(() => {
+      dispatch(getUserPortfolio());
+    }, [dispatch]);
 
     const dropdownHandler = () => {
         setBtnState(!btnState)
         console.log("btnState", btnState)
+    }
+
+    const buttonHandler = () => {
+        console.log("type", type)
+    }
+
+    const getData = (data) => {
+        console.log("coming from dropdown", data)
+        // console.log("transferType from getData BEFORE", transferType)
+        setType(data)
+        // console.log("transferType from getData AFTER", transferType);
+
+    }
+
+    const submitTransfer = () => {
+        let transferDetails = {
+            portfolioID: portfolio.id,
+            transferType: type,
+            amount,
+            date: new Date()
+        }
+        console.log("transferDetails", transferDetails)
     }
 
     return (
@@ -36,7 +66,7 @@ const [btnState, setBtnState] = useState(true);
                 }
                 onClick={dropdownHandler}
               >
-                <span>{transferType}</span>
+                <span>{type}</span>
                 <div>
                   <i className="fas fa-caret-down" />
                 </div>
@@ -45,12 +75,12 @@ const [btnState, setBtnState] = useState(true);
             <div className="dd-box">
               {!btnState && (
                 <div className="dropdown-container">
-                                <DropdownSelect transferType={transferType} />
+                                <DropdownSelect onSubmit={getData} />
                 </div>
               )}
             </div>
             <div className="review-btn-holder">
-              <button className="review-button bold">Complete Transfer</button>
+              <button className="review-button bold" onClick={submitTransfer}>Complete Transfer</button>
             </div>
           </div>
         </div>

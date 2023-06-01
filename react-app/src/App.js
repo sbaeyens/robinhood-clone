@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import UserHomePage from "./components/UserHomePage/Index";
 import SingleStockPage from "./components/SingleStockPage";
+import Transfers from "./components/Transfers";
 
 function App() {
 
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route path="/stocks/:ticker">
             <SingleStockPage />
+          </Route>
+          <Route path="/transfers">
+            <Transfers />
           </Route>
         </Switch>
       )}

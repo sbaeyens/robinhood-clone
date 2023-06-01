@@ -42,11 +42,13 @@ const [btnState, setBtnState] = useState(true);
                 </div>
               </div>
             </div>
-                    {btnState && (
-                        <div>
-                            <DropdownSelect />
-                        </div>
-                        )}
+            <div className="dd-box">
+              {!btnState && (
+                <div className="dropdown-container">
+                                <DropdownSelect transferType={transferType} />
+                </div>
+              )}
+            </div>
             <div className="review-btn-holder">
               <button className="review-button bold">Complete Transfer</button>
             </div>

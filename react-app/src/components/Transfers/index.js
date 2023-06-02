@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./Transfers.css";
 import { useDispatch, useSelector } from "react-redux";
 import DropdownSelect from "./DropdownSelect";
-import { getUserPortfolio } from "../../store/portfolio";
+import { getUserPortfolio, updatePortfolio } from "../../store/portfolio";
+import { addTransfer } from "../../store/transfers";
+
 
 function Transfers() {
 const dispatch = useDispatch();
@@ -40,6 +42,16 @@ const [btnState, setBtnState] = useState(true);
             date: new Date()
         }
         console.log("transferDetails", transferDetails)
+
+        dispatch(addTransfer(transferDetails))
+
+        let updateBalanceDetails = {
+            transaction_type: (type === "Deposit") ? "Sell" : "Buy",
+            total_expense: Number(amount),
+        }
+        console.log("updateBalanceDetails", updateBalanceDetails)
+
+        dispatch(updatePortfolio(updateBalanceDetails))
     }
 
     return (

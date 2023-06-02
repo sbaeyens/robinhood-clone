@@ -5,21 +5,53 @@ import DropdownSelect from "./DropdownSelect";
 import { getUserPortfolio, updatePortfolio } from "../../store/portfolio";
 import { addTransfer } from "../../store/transfers";
 
+const INITIAL_STATE = {
+  to: false,
+  from: false,
+  freq: false
+}
 
 function Transfers() {
-const dispatch = useDispatch();
-const portfolio = useSelector((state) => state.portfolio);
-const [type, setType] = useState("Deposit")
-const [amount, setAmount] = useState("10000");
-const [btnState, setBtnState] = useState(true);
+  const dispatch = useDispatch();
+  const portfolio = useSelector((state) => state.portfolio);
+  const [type, setType] = useState("Deposit")
+  const [amount, setAmount] = useState("10000");
+  const [btnState, setBtnState] = useState(true);
+  const [styleState, setStyleState] = useState(INITIAL_STATE)
 
+  console.log(type)
     useEffect(() => {
       dispatch(getUserPortfolio());
     }, [dispatch]);
 
+    /**
+     * dropdownHandler('to')
+     * dropdownHandler('from')
+     * dropdownHandler('freq')
+
+     *  -> (e) => { whatever... }
+        const dropdownHandler = (key) => (e) => {
+        console.log(key)
+        console.log(e.target.value)
+        setBtnState(!btnState)
+        console.log("btnState", btnState)
+
+        // All are false except what i just clicked on
+        // setStyleState({ ...INITIAL_STATE, [`${key}`]: true })
+
+        // // Toggle
+        // setStyleState()
+    }
+     */
     const dropdownHandler = () => {
         setBtnState(!btnState)
         console.log("btnState", btnState)
+
+        // All are false except what i just clicked on
+        // setStyleState({ ...INITIAL_STATE, [`${key}`]: true })
+
+        // // Toggle
+        // setStyleState()
     }
 
     const buttonHandler = () => {
@@ -87,7 +119,7 @@ const [btnState, setBtnState] = useState(true);
             <div className="dd-box">
               {!btnState && (
                 <div className="dropdown-container">
-                                <DropdownSelect onSubmit={getData} />
+                                <DropdownSelect setType={setType} />
                 </div>
               )}
             </div>

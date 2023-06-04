@@ -1,0 +1,132 @@
+.transfers-page {
+  display: flex;
+  justify-content: center;
+}
+
+.transfers-container {
+  margin-top: 75px;
+  display: flex;
+  /* align-items: center; */
+  flex-direction: column;
+  width: 600px;
+}
+
+.transfers-header {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.t-option {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0px;
+  /* border: 1px dotted green; */
+  height: 40px;
+  align-items: center;
+  padding: 5px 0px;
+}
+
+.t-option input {
+  background-color: white;
+  padding: 0px 15px;
+  width: 50%;
+  height: 100%;
+  font-size: 18px;
+  border-radius: 5px;
+  text-align: right;
+  border: 1px solid var(--bordergray);
+}
+
+.t-option input:hover {
+  border: 1px solid gray;
+}
+
+.t-option input::-webkit-outer-spin-button,
+.t-option input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.t-option input:focus {
+  outline: none !important;
+  border: 1px solid var(--rhgreen);
+  /* box-shadow: 0 0 10px #719ece; */
+}
+
+.t-dropdown-selector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 0px 15px;
+  width: 50%;
+  height: 100%;
+  /* font-size: 14px; */
+  border-radius: 5px;
+  text-align: right;
+  border: 1px solid var(--bordergray);
+}
+
+.t-dropdown-selector-clicked {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 0px 15px;
+  width: 50%;
+  height: 100%;
+  /* font-size: 14px; */
+  border-radius: 5px;
+  text-align: right;
+  border: 1px solid var(--rhgreen);
+  cursor: pointer;
+}
+
+.t-dropdown-selector:hover {
+  cursor: pointer;
+  border: 1px solid gray;
+}
+
+.review-btn-holder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  /* border: 1px solid blue; */
+  padding-top: 30px;
+}
+
+.review-btn-holder .review-button {
+  width: 70%;
+  font-size: 16px;
+}
+
+.dd-option {
+  padding: 10px 0px;
+  background-color: white;
+}
+
+.dd-option:hover {
+  background-color: var(--hovergray);
+}
+
+.dd-box {
+  position: relative;
+  display: flex;
+  justify-content: end;
+  /* left: 50px; */
+  /* width: 10%; */
+}
+
+.dropdown-container {
+  position: absolute;
+  /* background-color: rgba(255, 255, 255, 0.341); */
+  width: 50%;
+  /* left: 200px; */
+  justify-content: right;
+  /* top: 50px; */
+  border: 1px solid blue;
+  padding: 0px 15px;
+  background-color: white;
+  border-radius: 5px;
+}

@@ -15,4 +15,6 @@ p {
   --rhgreen: #00c805;
   --hovergray: #f5f8fa;
   --bordergray: #dae0e4;
+  --dev-border-red: 1px dotted red;
+  --dev-border-blue: 1px dotted blue;
 }

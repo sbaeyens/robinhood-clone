@@ -76,9 +76,25 @@ function Navigation({ isLoaded }){
         </div>
       </div>
       <div className="nav-links-container">
-        {/* <div className="nav-link">My Portfolio</div>
-        <div className="nav-link">Purchase History</div>
-        <div className="nav-link">My Lists</div> */}
+        <NavLink
+          exact
+          to="/"
+          className="nav-link"
+          activeClassName="nav-current"
+        >
+          Portfolio
+        </NavLink>
+        {/* <NavLink exact to="/history" className="nav-link">
+          History
+        </NavLink> */}
+        <NavLink
+          exact
+          to="/transfers"
+          className="nav-link"
+          activeClassName="nav-current"
+        >
+          Transfers
+        </NavLink>
         {isLoaded && (
           <div>
             <ProfileButton user={sessionUser} />

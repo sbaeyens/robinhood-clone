@@ -26,6 +26,23 @@
 
 .nav-link {
   padding: 0px 10px;
+  font-size: 15px;
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+}
+
+.nav-link:hover {
+  color: var(--rhgreen);
+}
+
+.nav-link:visited {
+  /* text-decoration: none; */
+  /* color: black; */
+}
+
+.nav-current {
+  color: var(--rhgreen);
 }
 
 .profile-dropdown {
@@ -244,7 +261,7 @@
 }
 .search-dropdown {
   position: absolute;
-  top: calc(100% + 5px);
+  top: calc(100% + 1px);
   left: 0;
   right: 0;
   z-index: 1;
@@ -252,6 +269,7 @@
   border: 1px solid #ccc;
   border-top: none;
   border-radius: 0 0 5px 5px;
+  overflow: hidden;
 }
 .search-results {
   display: flex;
@@ -259,10 +277,11 @@
   align-items: center;
   padding: 10px;
   cursor: pointer;
+  /* border-box: none; */
 }
 
 .search-results:hover {
-  background-color: lightgray;
+  background-color: var(--hovergray);
 }
 
 .search-ticker {

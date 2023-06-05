@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Transfers.css";
 import { useDispatch, useSelector } from "react-redux";
 import DropdownSelect from "./DropdownSelect";
 import { getUserPortfolio, updatePortfolio } from "../../store/portfolio";
 import { addTransfer } from "../../store/transfers";
+import { getTransfers } from "../../store/transfers";
+import TransferTile from "./TransferTile";
 
 const INITIAL_STATE = {
   to: false,
@@ -14,35 +16,36 @@ const INITIAL_STATE = {
 function Transfers() {
   const dispatch = useDispatch();
   const portfolio = useSelector((state) => state.portfolio);
+  const transfers = useSelector((state)=> state.transfers?.transfers)
   const [type, setType] = useState("Deposit")
   const [amount, setAmount] = useState("10000");
   const [btnState, setBtnState] = useState(true);
   const [styleState, setStyleState] = useState(INITIAL_STATE)
 
+
+  let menuRef = useRef();
+  // console.log("menuRef", menuRef);
+
   console.log(type)
     useEffect(() => {
       dispatch(getUserPortfolio());
+      dispatch(getTransfers())
+
+      return () => {
+        dispatch(getUserPortfolio());
+        dispatch(getTransfers());
+      };
+
     }, [dispatch]);
 
-    /**
-     * dropdownHandler('to')
-     * dropdownHandler('from')
-     * dropdownHandler('freq')
+  console.log("portfolio", portfolio.id)
 
-     *  -> (e) => { whatever... }
-        const dropdownHandler = (key) => (e) => {
-        console.log(key)
-        console.log(e.target.value)
-        setBtnState(!btnState)
-        console.log("btnState", btnState)
+    let transfersArray = []
+  if (transfers) {
+   transfersArray = Object.values(transfers)
+  }
+  console.log("transfersArray", transfersArray.length ? transfersArray[2] : 5)
 
-        // All are false except what i just clicked on
-        // setStyleState({ ...INITIAL_STATE, [`${key}`]: true })
-
-        // // Toggle
-        // setStyleState()
-    }
-     */
     const dropdownHandler = () => {
         setBtnState(!btnState)
         console.log("btnState", btnState)
@@ -54,23 +57,28 @@ function Transfers() {
         // setStyleState()
     }
 
-    const buttonHandler = () => {
-        console.log("type", type)
-    }
+  // useEffect(() => {
+  //   let handler = (e) => {
+  //     if (true) {
+  //       console.log("menuRef.current", menuRef);
+  //       //!menuRef.current.contains(e.target)
+  //       console.log("e", e);
+  //       setBtnState(true)
+  //     }
+  //   }
+  //   document.addEventListener("mousedown", handler)
+  //   return () => {
+  //     document.removeEventListener("mousedown", handler);
+  //   }
 
-    const getData = (data) => {
-        console.log("coming from dropdown", data)
-        // console.log("transferType from getData BEFORE", transferType)
-        setType(data)
-        // console.log("transferType from getData AFTER", transferType);
+  //   })
 
-    }
 
     const submitTransfer = () => {
         let transferDetails = {
-            portfolioID: portfolio.id,
-            transferType: type,
-            amount,
+            portfolioID: Number(portfolio.id),
+            transferType: type.toLowerCase(),
+            amount: Number(amount),
             date: new Date()
         }
         console.log("transferDetails", transferDetails)
@@ -95,6 +103,7 @@ function Transfers() {
               <span>Amount</span>
               <input
                 type="number"
+                id="amount"
                 min="0"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
@@ -116,16 +125,40 @@ function Transfers() {
                 </div>
               </div>
             </div>
-            <div className="dd-box">
+            <div className="dd-box" ref={menuRef}>
               {!btnState && (
+                // <div className="dropdown-background">
                 <div className="dropdown-container">
-                                <DropdownSelect setType={setType} />
+                  <DropdownSelect
+                    setType={setType}
+                    dropdownHandler={dropdownHandler}
+                  />
                 </div>
+                // </div>
               )}
             </div>
             <div className="review-btn-holder">
-              <button className="review-button bold" onClick={submitTransfer}>Complete Transfer</button>
+              <button className="review-button bold" onClick={submitTransfer}>
+                Complete Transfer
+              </button>
             </div>
+          </div>
+            <div className="transfers-header">Completed Transfers</div>
+          <div className="transfer-history-container">
+            <div className="transfer-tile">
+              <div className="tt-left">
+                <span className="tt-summary">
+                  Deposit to brokerage account from bank
+                </span>
+                <span className="tt-date">Jan 23</span>
+              </div>
+              <div className="tt-right">
+                <span className="tt-amount-green"> $1000 </span>
+              </div>
+            </div>
+            {transfersArray?.map((transfer) => (
+              <TransferTile transfer={transfer}></TransferTile>
+            ))}
           </div>
         </div>
       </div>

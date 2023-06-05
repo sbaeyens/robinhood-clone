@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTransactionsByTicker } from "../../store/transactions";
 import { addCommas } from "../../Utils";
+import { compareAsc, differenceInCalendarDays, format } from "date-fns";
 
 
 
@@ -36,7 +37,9 @@ function Transactions({ ticker }) {
             <p className="transaction-top-text">
               {transaction.transaction_type} - {transaction.stock_id}
             </p>
-            <p className="transaction-bottom-text">{transaction.date}</p>
+            <p className="transaction-bottom-text">
+              {format(new Date(transaction.date), "MMMM dd")}
+            </p>
           </div>
           <div className="transaction-summary">
             <p className="transaction-top-text">

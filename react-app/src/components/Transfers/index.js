@@ -110,7 +110,7 @@ function Transfers() {
               />
             </div>
             <div className="t-option">
-              <span>Transfer Types</span>
+              <span>Transfer Type</span>
               <div
                 className={
                   btnState

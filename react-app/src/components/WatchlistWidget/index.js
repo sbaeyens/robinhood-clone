@@ -6,6 +6,7 @@ import { thunkGetAllWatchlistsUserId } from "../../store/watchlists";
 import OpenModalButton from "../OpenModalButton";
 import CreateListModal from "../CreateListModal";
 import {NavLink} from "react-router-dom"
+import { fetchStockDetails } from "../../Utils";
 
 
 //
@@ -14,6 +15,7 @@ import OptionsModalButton from "./WatchlistModals/OptionsModalButton";
 import RenameWatchlistModal from "./WatchlistModals/RenameWatchlistModal";
 import DeleteWatchlistModal from "./WatchlistModals/DeleteWatchlistModal";
 import SingleWatchlist from "./SingleWatchlist";
+import StockCard from "./StockCard";
 
 
 function WatchlistWidget() {
@@ -61,6 +63,36 @@ function WatchlistWidget() {
     document.addEventListener("click", closeMenu);
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
+
+  useEffect(() => {
+    if (investmentsArray.length<1) {
+      return;
+    }
+    investmentsArray.forEach((inv) => {
+      console.log("inv", inv);
+      async function runFetchStockDetails() {
+        const data = await fetchStockDetails(inv.stock_id);
+        let openPrice = data.ticker.prevDay.c;
+
+        let change = data.ticker.todaysChange;
+        let currentPrice = openPrice + change;
+
+        console.log("prices from useEffect", openPrice, change, currentPrice);
+        console.log("data from useEffect", data);
+        inv.currentPrice = currentPrice
+        inv.change = change
+
+
+        console.log("inv2", inv)
+        // setCurrentPrice(currentPrice);
+        // setStockName(data.ticker.ticker);
+      }
+      console.log("investmentsArray", investmentsArray);
+      setInvestmentsData([...investmentsArray])
+      runFetchStockDetails();
+    })
+
+  }, [investmentsArray]);
 
   // *FIRST RENDER
   if (!user) return null; // If no user
@@ -111,24 +143,26 @@ function WatchlistWidget() {
         </div>
         <div className="inv-list">
           {investmentsData.map((inv) => (
-            <NavLink
-              key={inv.stock_id}
-              to={`/stocks/${inv.stock_id}`}
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              <div className="inv-card">
-                <div className="inv-tick-share">
-                  <div className="stock-ticker bold">{inv.stock_id}</div>
-                  <div>{inv.quantity} Share(s)</div>
-                </div>
-                <div className="inv-chart-pic"></div>
-                <div className="inv-price-change">
-                  <div>${Number(0).toFixed(2)}</div>
-                  <div>+0.00%</div>
-                </div>
-              </div>
-            </NavLink>
+            // <NavLink
+            //   key={inv.stock_id}
+            //   to={`/stocks/${inv.stock_id}`}
+            //   style={{ textDecoration: "none", color: "black" }}
+            // >
+            //   <div className="inv-card">
+            //     <div className="inv-tick-share">
+            //       <div className="stock-ticker bold">{inv.stock_id}</div>
+            //       <div>{inv.quantity} Share(s)</div>
+            //     </div>
+            //     <div className="inv-chart-pic"></div>
+            //     <div className="inv-price-change">
+            //       <div>${Number(inv.currentPrice).toFixed(2)}</div>
+            //       <div>+{inv.change}%</div>
+            //     </div>
+            //   </div>
+            // </NavLink>
+            <StockCard inv={inv}></StockCard>
           ))}
+
           {/* <div className="watchlist-row">STCK</div>
           <div className="watchlist-row">MKTG</div> */}
         </div>

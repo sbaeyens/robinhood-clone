@@ -124,6 +124,14 @@
   border: none;
 }
 
+.inv-price-change {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: end;
+  /* padding: 10px 20px; */
+}
+
 /* Dropdown styling options ---------------------------------------- */
 
 /*

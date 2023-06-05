@@ -1,24 +1,22 @@
 import React, { useState } from 'react'
 import "./Transfers.css";
 
-function DropdownSelect({ setType }) {
-    // const [transferType, setTransferType] = useState("Deposit")
-    // const handleSet = (e) => {
-    //     let selection = e.target.innerHTML;
-    //     console.log("e.target.innerHTML", e.target.innerHTML);
-    //     console.log("transfer type before", transferType)
-    //     setTransferType(selection)
-    //     console.log("transfer type after", transferType)
-    //     props.onSubmit(transferType)
-    // }
+function DropdownSelect({ setType, dropdownHandler }) {
+
+
+
+  const clickHandler = (e) => {
+    setType(e.target.innerHTML);
+    dropdownHandler()
+  }
 
 
 return (
-  <div>
-    <div className="dd-option" onClick={(e) => setType(e.target.innerHTML)}>
+  <div className='dd-div'>
+    <div className="dd-option" onClick={clickHandler}>
       Deposit
     </div>
-    <div className="dd-option" onClick={(e) => setType(e.target.innerHTML)}>
+    <div className="dd-option" onClick={clickHandler}>
       Withdrawal
     </div>
   </div>

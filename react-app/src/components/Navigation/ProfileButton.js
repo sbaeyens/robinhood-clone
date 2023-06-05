@@ -43,8 +43,7 @@ function ProfileButton({ user }) {
   return (
     <div className="profile-container">
       <button onClick={openMenu} className="nav-profile-button">
-        <i className="fas fa-user" />
-        <i className="fas fa-caret-down" />
+        <span className="nav-link">Account </span>
       </button>
       <div className={ulClassName} ref={ulRef}>
         {user ? (

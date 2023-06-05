@@ -44,6 +44,15 @@
   justify-content: space-between;
   border-bottom: 1px solid lightgrey;
   padding: 20px 0px 20px 0px;
+  cursor: pointer;
+  transition: all;
+  transition-duration: 500ms;
+}
+
+.buying-power-container:hover {
+  background-color: var(--hovergray);
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .line-chart {

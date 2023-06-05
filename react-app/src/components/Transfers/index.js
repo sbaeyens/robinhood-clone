@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Transfers.css";
 import { useDispatch, useSelector } from "react-redux";
 import DropdownSelect from "./DropdownSelect";
@@ -19,30 +19,17 @@ function Transfers() {
   const [btnState, setBtnState] = useState(true);
   const [styleState, setStyleState] = useState(INITIAL_STATE)
 
+
+  let menuRef = useRef();
+  console.log("menuRef", menuRef);
+
   console.log(type)
     useEffect(() => {
       dispatch(getUserPortfolio());
     }, [dispatch]);
 
-    /**
-     * dropdownHandler('to')
-     * dropdownHandler('from')
-     * dropdownHandler('freq')
 
-     *  -> (e) => { whatever... }
-        const dropdownHandler = (key) => (e) => {
-        console.log(key)
-        console.log(e.target.value)
-        setBtnState(!btnState)
-        console.log("btnState", btnState)
 
-        // All are false except what i just clicked on
-        // setStyleState({ ...INITIAL_STATE, [`${key}`]: true })
-
-        // // Toggle
-        // setStyleState()
-    }
-     */
     const dropdownHandler = () => {
         setBtnState(!btnState)
         console.log("btnState", btnState)
@@ -54,17 +41,22 @@ function Transfers() {
         // setStyleState()
     }
 
-    const buttonHandler = () => {
-        console.log("type", type)
-    }
+  // useEffect(() => {
+  //   let handler = (e) => {
+  //     if (true) {
+  //       console.log("menuRef.current", menuRef);
+  //       //!menuRef.current.contains(e.target)
+  //       console.log("e", e);
+  //       setBtnState(true)
+  //     }
+  //   }
+  //   document.addEventListener("mousedown", handler)
+  //   return () => {
+  //     document.removeEventListener("mousedown", handler);
+  //   }
 
-    const getData = (data) => {
-        console.log("coming from dropdown", data)
-        // console.log("transferType from getData BEFORE", transferType)
-        setType(data)
-        // console.log("transferType from getData AFTER", transferType);
+  //   })
 
-    }
 
     const submitTransfer = () => {
         let transferDetails = {
@@ -95,6 +87,7 @@ function Transfers() {
               <span>Amount</span>
               <input
                 type="number"
+                id="amount"
                 min="0"
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
@@ -116,15 +109,22 @@ function Transfers() {
                 </div>
               </div>
             </div>
-            <div className="dd-box">
+            <div className="dd-box" ref={menuRef}>
               {!btnState && (
-                <div className="dropdown-container">
-                                <DropdownSelect setType={setType} />
+                // <div className="dropdown-background">
+                <div className="dropdown-container" >
+                  <DropdownSelect
+                    setType={setType}
+                    dropdownHandler={dropdownHandler}
+                  />
                 </div>
+                // </div>
               )}
             </div>
             <div className="review-btn-holder">
-              <button className="review-button bold" onClick={submitTransfer}>Complete Transfer</button>
+              <button className="review-button bold" onClick={submitTransfer}>
+                Complete Transfer
+              </button>
             </div>
           </div>
         </div>

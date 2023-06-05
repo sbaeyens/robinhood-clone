@@ -10,13 +10,15 @@ import { getUserPortfolio } from "../../store/portfolio"
 import { fetchStockChartData, fetchStockDetails } from "../../Utils";
 // import { useParams } from "react-router-dom";
 import { addCommas } from "../../Utils";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+
 
 // const API_KEY = process.env.REACT_APP_POLYGON_API_KEY;
 // const BASE_URL = "https://api.polygon.io/v2/";
 
 function StockChart({ticker}) {
   const dispatch = useDispatch();
-
+  const linkHistory = useHistory();
   // const [buyingPower, setBuyingPower] = useState("");
   const [stockChartData, setStockChartData] = useState(null);
   const [dateRange, setDateRange] = useState(90);
@@ -174,6 +176,10 @@ function StockChart({ticker}) {
      setActive(!isActive);
    };
 
+    const buyingPowerHandler = (e) => {
+      linkHistory.push(`/transfers`);
+    };
+
   return (
     <div className="chart-container">
       <div className="value-summary">
@@ -239,7 +245,7 @@ function StockChart({ticker}) {
           </div>
         </div>
       </div>
-      <div className="buying-power-container">
+      <div className="buying-power-container" onClick={buyingPowerHandler}>
         <h2>Buying Power</h2>
         <h2>${addCommas(Number(portfolio?.balance).toFixed(2))}</h2>
       </div>

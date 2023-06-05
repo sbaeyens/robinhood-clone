@@ -26,6 +26,23 @@
 
 .nav-link {
   padding: 0px 10px;
+  font-size: 15px;
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+}
+
+.nav-link:hover {
+  color: var(--rhgreen);
+}
+
+.nav-link:visited {
+  /* text-decoration: none; */
+  /* color: black; */
+}
+
+.nav-current {
+  color: var(--rhgreen);
 }
 
 .profile-dropdown {

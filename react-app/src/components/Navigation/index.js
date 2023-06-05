@@ -76,13 +76,23 @@ function Navigation({ isLoaded }){
         </div>
       </div>
       <div className="nav-links-container">
-        <NavLink exact to="/" className="nav-link">
+        <NavLink
+          exact
+          to="/"
+          className="nav-link"
+          activeClassName="nav-current"
+        >
           Portfolio
         </NavLink>
         {/* <NavLink exact to="/history" className="nav-link">
           History
         </NavLink> */}
-        <NavLink exact to="/transfers" className="nav-link" activeClassName="nav-current">
+        <NavLink
+          exact
+          to="/transfers"
+          className="nav-link"
+          activeClassName="nav-current"
+        >
           Transfers
         </NavLink>
         {isLoaded && (

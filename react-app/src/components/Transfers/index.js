@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import DropdownSelect from "./DropdownSelect";
 import { getUserPortfolio, updatePortfolio } from "../../store/portfolio";
 import { addTransfer } from "../../store/transfers";
+import { getTransfers } from "../../store/transfers";
+import TransferTile from "./TransferTile";
 
 const INITIAL_STATE = {
   to: false,
@@ -14,6 +16,7 @@ const INITIAL_STATE = {
 function Transfers() {
   const dispatch = useDispatch();
   const portfolio = useSelector((state) => state.portfolio);
+  const transfers = useSelector((state)=> state.transfers?.transfers)
   const [type, setType] = useState("Deposit")
   const [amount, setAmount] = useState("10000");
   const [btnState, setBtnState] = useState(true);
@@ -21,14 +24,27 @@ function Transfers() {
 
 
   let menuRef = useRef();
-  console.log("menuRef", menuRef);
+  // console.log("menuRef", menuRef);
 
   console.log(type)
     useEffect(() => {
       dispatch(getUserPortfolio());
+      dispatch(getTransfers())
+
+      return () => {
+        dispatch(getUserPortfolio());
+        dispatch(getTransfers());
+      };
+
     }, [dispatch]);
 
+  console.log("portfolio", portfolio.id)
 
+    let transfersArray = []
+  if (transfers) {
+   transfersArray = Object.values(transfers)
+  }
+  console.log("transfersArray", transfersArray.length ? transfersArray[2] : 5)
 
     const dropdownHandler = () => {
         setBtnState(!btnState)
@@ -60,9 +76,9 @@ function Transfers() {
 
     const submitTransfer = () => {
         let transferDetails = {
-            portfolioID: portfolio.id,
-            transferType: type,
-            amount,
+            portfolioID: Number(portfolio.id),
+            transferType: type.toLowerCase(),
+            amount: Number(amount),
             date: new Date()
         }
         console.log("transferDetails", transferDetails)
@@ -112,7 +128,7 @@ function Transfers() {
             <div className="dd-box" ref={menuRef}>
               {!btnState && (
                 // <div className="dropdown-background">
-                <div className="dropdown-container" >
+                <div className="dropdown-container">
                   <DropdownSelect
                     setType={setType}
                     dropdownHandler={dropdownHandler}
@@ -126,6 +142,23 @@ function Transfers() {
                 Complete Transfer
               </button>
             </div>
+          </div>
+            <div className="transfers-header">Completed Transfers</div>
+          <div className="transfer-history-container">
+            <div className="transfer-tile">
+              <div className="tt-left">
+                <span className="tt-summary">
+                  Deposit to brokerage account from bank
+                </span>
+                <span className="tt-date">Jan 23</span>
+              </div>
+              <div className="tt-right">
+                <span className="tt-amount-green"> $1000 </span>
+              </div>
+            </div>
+            {transfersArray?.map((transfer) => (
+              <TransferTile transfer={transfer}></TransferTile>
+            ))}
           </div>
         </div>
       </div>

@@ -10,6 +10,7 @@
     "axios": "^1.3.4",
     "chart.js": "^3.9.1",
     "chartjs-react": "^4.1.0",
+    "date-fns": "^2.30.0",
     "http-proxy-middleware": "^1.0.5",
     "react": "^17.0.2",
     "react-chartjs-2": "^5.2.0",

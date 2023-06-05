@@ -1,6 +1,7 @@
 .transfers-page {
   display: flex;
   justify-content: center;
+  /* border: var(--dev-border-red); */
 }
 
 .transfers-container {
@@ -9,6 +10,7 @@
   /* align-items: center; */
   flex-direction: column;
   width: 600px;
+  /* border: var(--dev-border-blue); */
 }
 
 .transfers-header {
@@ -160,3 +162,54 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.7);
 } */
+
+.transfer-history-container {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.transfer-tile {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--bordergray);
+  border-bottom: 1px solid var(--bordergray);
+
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.transfer-tile:hover {
+  background-color: var(--hovergray);
+}
+
+.tt-left {
+  display: flex;
+  flex-direction: column;
+  /* border: var(--dev-border-red); */
+}
+
+.tt-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: var(--dev-border-red); */
+}
+
+.tt-summary {
+  font-weight: 700;
+}
+
+.tt-date {
+  font-weight: 300;
+  font-size: 13px;
+}
+
+.tt-amount-green {
+  font-weight: 700;
+  color: var(--rhgreen);
+}
+
+.tt-amount-red {
+  font-weight: 700;
+  color: red;
+}

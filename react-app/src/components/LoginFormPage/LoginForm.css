@@ -1,11 +1,18 @@
 .login-page-container {
   display: flex;
+  /* overflow: hidden; */
 }
 
+/* .img-container {
+  align-items: center;
+  overflow: hidden;
+  width: 50vw;
+} */
+
 .login-form-img {
-  min-width: 900px;
-  min-height: 1300px;
-  max-height: 1300px;
+  /* min-width: 900px;
+  min-height: 500px; */
+  /* max-height: 1300px; */
   width: 50vw;
   height: 100vh;
 }
@@ -18,10 +25,17 @@
   min-height: 1300px;
   right: 0px;
   z-index: 1;
+  overflow: hidden;
 }
 
 .login-form-div {
-  padding: 70px 50px;
+  /* padding: 70px 50px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* border: var(--dev-border-red); */
+  height: 100vh;
 }
 
 .login-label-text {

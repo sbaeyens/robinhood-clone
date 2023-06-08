@@ -29,11 +29,13 @@ function LoginFormPage() {
 
   return (
     <div className="login-page-container">
-      <img
-        className="login-form-img"
-        src="./images/signin-background.png"
-        alt="login"
-      />
+      <div className="img-container">
+        <img
+          className="login-form-img"
+          src="./images/signin-background.png"
+          alt="login"
+        />
+      </div>
       <div className="login-form-container">
         <div className="login-form-div">
           <h1>Log in to Dinero</h1>

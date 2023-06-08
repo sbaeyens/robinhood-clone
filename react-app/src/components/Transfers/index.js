@@ -91,7 +91,9 @@ function Transfers() {
         }
         console.log("updateBalanceDetails", updateBalanceDetails)
 
-        dispatch(updatePortfolio(updateBalanceDetails))
+      dispatch(updatePortfolio(updateBalanceDetails))
+      dispatch(getTransfers())
+      // dispatch(get)
     }
 
     return (

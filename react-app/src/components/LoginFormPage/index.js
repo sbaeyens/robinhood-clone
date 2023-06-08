@@ -29,11 +29,13 @@ function LoginFormPage() {
 
   return (
     <div className="login-page-container">
-      <img
-        className="login-form-img"
-        src="./images/signin-background.png"
-        alt="login"
-      />
+      <div className="img-container">
+        <img
+          className="login-form-img"
+          src="./images/signin-background.png"
+          alt="login"
+        />
+      </div>
       <div className="login-form-container">
         <div className="login-form-div">
           <h1>Log in to Dinero</h1>
@@ -67,16 +69,19 @@ function LoginFormPage() {
                 />
               </label>
             </div>
-            <button className="login-form-button" type="submit">
-              Log In
-            </button>
-            <div className="login-form-section-div">
-              <button
-                className="login-form-button"
-                onClick={() => handleDemoClick()}
-              >
-                Demo User
+            <div className="buttons-container">
+              <button className="login-form-button" type="submit">
+                Log In
               </button>
+              <span>- or - </span>
+              <div className="login-form-section-div">
+                <button
+                  className="login-form-button demo-btn"
+                  onClick={() => handleDemoClick()}
+                >
+                  Demo User
+                </button>
+              </div>
             </div>
           </form>
           <div className="login-line-split"></div>

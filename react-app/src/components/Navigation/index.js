@@ -14,6 +14,7 @@ function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
   const history = useHistory();
   const [value, setValue] = useState("");
+  const [stockTick, setStockTick] = useState("")
 
   if (!sessionUser) {
     return <></>
@@ -24,8 +25,8 @@ function Navigation({ isLoaded }){
     };
 
   	const onClickhHandler = (company, ticker) => {
-      // setValue(company)
-      // setStockTick(ticker)
+      setValue(company)
+      setStockTick(ticker)
       history.push(`/stocks/${ticker}`);
       setValue("");
     };
@@ -34,10 +35,11 @@ function Navigation({ isLoaded }){
       const filteredData = data.filter((item) => {
         const searchInfo = value.toLowerCase();
         const companyName = item.company.toLowerCase();
+        const tickerName = item.ticker.toLowerCase()
         return (
-          searchInfo &&
+          (searchInfo &&
           companyName.startsWith(searchInfo) &&
-          companyName !== searchInfo
+          companyName !== searchInfo) || (searchInfo && tickerName.startsWith(searchInfo))
         );
       });
 

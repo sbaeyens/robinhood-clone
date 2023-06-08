@@ -69,16 +69,19 @@ function LoginFormPage() {
                 />
               </label>
             </div>
-            <button className="login-form-button" type="submit">
-              Log In
-            </button>
-            <div className="login-form-section-div">
-              <button
-                className="login-form-button"
-                onClick={() => handleDemoClick()}
-              >
-                Demo User
+            <div className="buttons-container">
+              <button className="login-form-button" type="submit">
+                Log In
               </button>
+              <span>- or - </span>
+              <div className="login-form-section-div">
+                <button
+                  className="login-form-button demo-btn"
+                  onClick={() => handleDemoClick()}
+                >
+                  Demo User
+                </button>
+              </div>
             </div>
           </form>
           <div className="login-line-split"></div>

@@ -3,7 +3,8 @@
 Hi Welcome to Dinero, a clone of Robinhood built with a javascript/react frontend and python/flask backend. It's pulls real-time stock data using the [Polygon.io](https://polygon.io/) API.
 
 View the site here: [Dinero.com](https://dinero.onrender.com/)
-      - Log in using my Demo User account to use all the features.
+
+      * Log in using the Demo User account on the sign in page to use all the features.
 
 ## Technologies & Libraries Used
 

@@ -25,26 +25,39 @@ View the site here: [Dinero.com](https://dinero.onrender.com/)
 - New users are given a $10,000 initial deposit on signup to purchase stocks.
 
 ### Home/User Portfolio:
-- Add items to your cart
-  - 
+- Users can view a history of their portfolio performance.
+- Users have a side panel that contains all of the current stocks they own
+- Users also can view their wishlists and the stocks on those lists
 ![rh-home](https://github.com/sbaeyens/robinhood-clone/assets/11000112/2c99dfd3-f5ec-44cb-bb24-b90b0801b591)
 
 ### Buy/Sell Stock:
 **Note: You can log in using the Demo User to experience all of the sites features.
-- A 
+- Live stock data is pulled from the Polygon.io API
+- Users can buy shares at it's current market price
+- Users can sell shares at it's current market price
+- A history of buy/sell transactions are kept underneath the stocks chart
+- All purchases will be reflected on your portfolio
 ![rh-singlestockpage](https://github.com/sbaeyens/robinhood-clone/assets/11000112/62a37f7b-d33c-4984-a37c-4acfe005560f)
 
 ### Watchlists:
-- From 
+- Create, edit, or delete watchlists
+- Add or remove stocks to watchlists
+- View your watchlists and their stocks anytime from the home/portfolio page.
 ![rh-watchlists](https://github.com/sbaeyens/robinhood-clone/assets/11000112/d1290038-4293-4178-829d-f62ce65ca878)
 
 ### Transfers:
 ![rh-transfers](https://github.com/sbaeyens/robinhood-clone/assets/11000112/7426c7a5-25e5-4cb8-a25c-da47da597616)
-
+- Add/deposit money (aka "buying power") to your account.
+- Withdraw/remove money from your account.
+- View a history of all your transfers.
 
 ### Search:
-- Search functionality
+- Search any stock by company name or ticker
+
 ![rh-search](https://github.com/sbaeyens/robinhood-clone/assets/11000112/d9488b9a-5698-4c3f-93f1-53b4eda01f3a)
 
 
 ## Future Features/Updates:
+- Additional data vizualization of shares/stocks in portfolio & past performance over time.
+     - eg portfolio breakdown by sector  
+- Dedicated page to manage wishlists.
